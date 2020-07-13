@@ -5,7 +5,6 @@
     $('#defineActivityShow').click(defineActivityModal);
     $('#createAppBundleActivity').click(createAppBundleActivity);
     $('#startWorkitem').click(startWorkitem);
-
     startConnection();
 });
 
@@ -115,10 +114,13 @@ function startWorkitem() {
             type: 'POST',
             success: function (res) {
                 writeLog('Workitem started: ' + res.workItemId);
+                console.log(res);
+                displayAlertMsg("Workitem started");
             }
         });
     });
 }
+
 
 function writeLog(text) {
     $('#outputlog').append('<div style="border-top: 1px dashed #C0C0C0">' + text + '</div>');
@@ -132,6 +134,7 @@ var connectionId;
 function startConnection(onReady) {
     if (connection && connection.connectionState) { if (onReady) onReady(); return; }
     connection = new signalR.HubConnectionBuilder().withUrl("/api/signalr/designautomation").build();
+    console.log(connection);
     connection.start()
         .then(function () {
             connection.invoke('getConnectionId')
@@ -141,11 +144,40 @@ function startConnection(onReady) {
                 });
         });
 
+     //Have an event handler for a type of message that we're receiving.
+     //In this particular case we call that "downloadResult" from the server.
+     //This allow us to use "connection.on()" and specify our ket "downloadResult".
+     //It also takes a function, so this function is how do you want your client side 
+     //to react when it recives that particular message.
     connection.on("downloadResult", function (url) {
         writeLog('<a href="' + url + '">Download result file here</a>');
+        getJsonFromDA(url);
     });
 
     connection.on("onComplete", function (message) {
+        console.log(message)
+        displayAlertMsg("Workitem completed");
         writeLog(message);
     });
+}
+// Handle data after Design Automation API successfully completed.
+
+function displayAlertMsg(messageInfo) {
+    $("#alert-info").text(messageInfo);
+    $("div.success").fadeIn(300).delay(900).fadeOut(400);
+};
+
+function getJsonFromDA(url) {
+    $.get(url, function (data, status) {
+        //alert("Data: " + data + "\nStatus: " + status);
+        const resultData = JSON.parse(data);
+        console.log(status)
+        console.log(resultData);
+    });
+    //$.get(url)
+    //    .done(function (data) {
+    //        const resultData = JSON.parse(data);
+    //        console.log(resultData);
+    //    });
+
 }

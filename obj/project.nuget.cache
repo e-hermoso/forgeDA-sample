@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DEGYWYb6TuClHTzvjXuMezFL/01xxLG28I9CEKAnWt/x95ADrQjAbTNr6I80veGqUwFfY0gl3GF8UGGmZnusYA==",
+  "dgSpecHash": "Kkvc/OX9r3qb3nr7i1ry7ldOzbhmfpEpUa6xnA8VY5NtpSCkv4QqWOS3fYYXk/z8Sfas6ug8dyLtswM2d8izmg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation\\forgeDesignautomation.csproj",
+  "projectFilePath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\erich\\.nuget\\packages\\autodesk.forge\\1.7.0\\autodesk.forge.1.7.0.nupkg.sha512",
     "C:\\Users\\erich\\.nuget\\packages\\autodesk.forge.core\\1.0.1\\autodesk.forge.core.1.0.1.nupkg.sha512",

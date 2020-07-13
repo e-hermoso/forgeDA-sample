@@ -1,0 +1,14 @@
+﻿
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    display: none;
+}
+/*Esri style*/
+#optionsDiv {
+    background-color: white;
+    color: black;
+    padding: 6px;
+    max-width: 400px;
+}

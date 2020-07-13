@@ -863,11 +863,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation\\forgeDesignautomation.csproj",
+      "projectUniqueName": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
       "projectName": "forgeDesignautomation",
-      "projectPath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation\\forgeDesignautomation.csproj",
+      "projectPath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
       "packagesPath": "C:\\Users\\erich\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation\\obj\\",
+      "outputPath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation_esri\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\erich\\AppData\\Roaming\\NuGet\\NuGet.Config",

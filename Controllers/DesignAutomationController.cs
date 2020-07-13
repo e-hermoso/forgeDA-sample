@@ -24,6 +24,34 @@ using WorkItemStatus = Autodesk.Forge.DesignAutomation.Model.WorkItemStatus;
 
 namespace forgeDesignautomation.Controllers
 {
+    //public class DesignAutomation4Civil3D
+    //{
+    //    public async Task<XrefTreeArgument> BuildUploadURL(string bucketKey, string inputFileNameOSS, dynamic oauth)
+    //    {
+    //        return new XrefTreeArgument()
+    //        {
+    //            Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, inputFileNameOSS),
+    //            Headers = new Dictionary<string, string>()
+    //            {
+    //                { "Authorization", "Bearer " + oauth.access_token }
+    //            }
+    //        };
+    //    }
+
+    //    public async Task<XrefTreeArgument> BuildDwonloadURL(string bucketKey, string inputFileNameOSS, dynamic oauth)
+    //    {
+    //        return new XrefTreeArgument()
+    //        {
+    //            Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, inputFileNameOSS),
+    //            Verb = Verb.Put,
+    //            Headers = new Dictionary<string, string>()
+    //            {
+    //                {"Authorization", "Bearer " + oauth.access_token }
+    //            }
+    //        };
+    //    }
+
+    //}
     [ApiController]
     public class DesignAutomationController : ControllerBase
     {
@@ -193,7 +221,7 @@ namespace forgeDesignautomation.Controllers
                         { "inputFile", new Parameter() { Description = "input file", LocalName = "$(inputFile)", Ondemand = false, Required = true, Verb = Verb.Get, Zip = false } },
                         { "result", new Parameter() { Description = "Resulting File", LocalName = "parcel.json", Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } },
                         //{ "inputJson", new Parameter() { Description = "input json", LocalName = "params.json", Ondemand = false, Required = false, Verb = Verb.Get, Zip = false } },
-                        { "outputFile", new Parameter() { Description = "output file", LocalName = "outputFile." + engineAttributes.extension, Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } }
+                        //{ "outputFile", new Parameter() { Description = "output file", LocalName = "outputFile." + engineAttributes.extension, Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } }
                     },
                     Settings = new Dictionary<string, ISetting>()
                     {
@@ -270,6 +298,7 @@ namespace forgeDesignautomation.Controllers
                 await objects.UploadObjectAsync(bucketKey, inputFileNameOSS, (int)streamReader.BaseStream.Length, streamReader.BaseStream, "application/octet-stream");
             System.IO.File.Delete(fileSavePath);// delete server copy
 
+
             // prepare workitem arguments
             // 1. input file
             XrefTreeArgument inputFileArgument = new XrefTreeArgument()
@@ -280,11 +309,12 @@ namespace forgeDesignautomation.Controllers
                     { "Authorization", "Bearer " + oauth.access_token }
                 }
             };
+
             // 2. output file
-            string outputFileNameOSSq = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), "parcel.json"); // avoid overriding
+            string outputFileNameOSSjson = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), "parcel.json"); // avoid overriding
             XrefTreeArgument inputFileTwoArgument = new XrefTreeArgument()
             {
-                Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSSq),
+                Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSSjson),
                 Verb = Verb.Put,
                 Headers = new Dictionary<string, string>()
                 {
@@ -299,6 +329,7 @@ namespace forgeDesignautomation.Controllers
             //{
             //    Url = "data:application/json, " + ((JObject)inputJson).ToString(Formatting.None).Replace("\"", "'")
             //};
+
             // 4. output file
             string outputFileNameOSS = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), Path.GetFileName(input.inputFile.FileName)); // avoid overriding
             XrefTreeArgument outputFileArgument = new XrefTreeArgument()
@@ -311,9 +342,12 @@ namespace forgeDesignautomation.Controllers
                 }
             };
 
+            //DesignAutomation4Civil3D da4c3d = new DesignAutomation4Civil3D();
+
+
             // prepare & submit workitem
             // the callback contains the connectionId (used to identify the client) and the outputFileName of this workitem
-            string callbackUrl = string.Format("{0}/api/forge/callback/designautomation?id={1}&outputFileName={2}", OAuthController.GetAppSetting("FORGE_WEBHOOK_URL"), browerConnectionId, outputFileNameOSS);
+            string callbackUrl = string.Format("{0}/api/forge/callback/designautomation?id={1}&outputFileName={2}", OAuthController.GetAppSetting("FORGE_WEBHOOK_URL"), browerConnectionId, outputFileNameOSSjson);
             WorkItem workItemSpec = new WorkItem()
             {
                 ActivityId = activityName,
@@ -322,7 +356,7 @@ namespace forgeDesignautomation.Controllers
             { "inputFile", inputFileArgument },
             { "result", inputFileTwoArgument},
             //{ "inputJson",  inputJsonArgument },
-            { "outputFile", outputFileArgument },
+            //{ "outputFile", outputFileArgument },
             { "onComplete", new XrefTreeArgument { Verb = Verb.Post, Url = callbackUrl } }
         }
             };
