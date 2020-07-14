@@ -16,8 +16,11 @@
     <script src="/js/ForgeDesignAutomation.js"></script>
 
     <!-- Esri API-->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css" />
-    <script src="https://js.arcgis.com/4.15/"></script>
+    <!--<link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css" />-->
+    <!--<script src="https://js.arcgis.com/4.15/"></script>-->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.12/"></script>
+
     <link href="css/main.css" rel="stylesheet" />
     <!--<script src="/js/dojo.js"></script>-->
     <script src="/js/esri.js"></script>
@@ -35,6 +38,9 @@
                     </a>
                 </li>
             </ul>
+            <!-- Figure out why this button is needed -->
+            <button class="action-button esri-icon-trash" id="reset-map" style="height:33px;width:40px;" title="Clear graphics"></button>
+
             <div style="float: right; margin-top: 15px; cursor: pointer;">
                 <span style="padding-right: 5px;" data-toggle="modal" data-target="#defineActivityModal" title="Configura AppBundle & Activity">
                     <span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Configure
@@ -57,8 +63,12 @@
     </div>-->
 
                 <div class="form-group">
-                    <label for="inputFile">Input file</label>
-                    <input type="file" class="form-control-file" id="inputFile">
+                    <form id="importFileForm" style='padding:4px;' method="post" enctype="multipart/form-data">
+                        <label for="inputFile">Input file</label>
+                        <input type="file" name="file" class="form-control-file" id="inputFile" onchange="makex()">
+                    </form>
+                    <!--<label for="inputFile">Input file</label>
+                    <input type="file" name="file" class="form-control-file" id="inputFile" onchange="makex()">-->
                 </div>
                 <div class="form-group" style="display: none;">
                     <label for="activity">Existing activities</label>
@@ -67,21 +77,21 @@
                 <center><button class="btn btn-primary" id="startWorkitem">Start workitem</button></center><br />
                 <div class="alert-box success" id="alert-info"></div>
             </div>
-            <div class="col-sm-6 fill">
-                <pre id="outputlog" style="height: calc(100vh - 120px); overflow-y: scroll;"></pre>
-            </div>
             <div class="col-sm-4 fill">
-                <div id="viewDiv" style="height: calc(100vh - 120px); width:100%; padding: 0; margin: 0;"></div>
-                <div id="optionsDiv" class="esri-widget">
-                    <p>
-                        Select a query type and click a point on the map to view the results.
-                    </p>
-                    <select id="query-type" class="esri-widget">
-                        <option value="basic">Basic Query</option>
-                        <option value="distance">Query By Distance</option>
-                    </select>
+                <div class="sty-content"  style="max-height: 50%; overflow-y: scroll;">
+                    <div id="content-sidebar">
+                         <h3 align='center'>Legal Description</h3>
+                    </div>
                 </div>
+                <hr style="border-top: dashed 3px; margin: 10px;" />
+
+                <pre id="outputlog" style="height: calc(50vh - 120px); overflow-y: scroll;"></pre>
+                <!--<pre id="outputlog" style="height: calc(100vh - 120px); overflow-y: scroll; display: none;" >OutPutLog</pre>-->
             </div>
+            <div class="col-sm-6 fill">
+                <div id="viewDiv" style="height: calc(100vh - 120px); width:100%; padding: 0; margin: 0;"></div>
+            </div>
+        </div>
     </div>
     <!-- Modal Define AppBundle & Activity -->
                 <div class="modal fade" id="defineActivityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -124,7 +124,8 @@ function startWorkitem() {
 
 function writeLog(text) {
     $('#outputlog').append('<div style="border-top: 1px dashed #C0C0C0">' + text + '</div>');
-    var elem = document.getElementById('outputlog');
+    //var elem = document.getElementById('outputlog');
+    var elem = $('#outputlog')[0];
     elem.scrollTop = elem.scrollHeight;
 }
 

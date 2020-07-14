@@ -858,19 +858,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\erich\\.nuget\\packages\\": {}
+    "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
+      "projectUniqueName": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
       "projectName": "forgeDesignautomation",
-      "projectPath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
-      "packagesPath": "C:\\Users\\erich\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\erich\\source\\repos\\forgeDesignautomation_esri\\obj\\",
+      "projectPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
+      "packagesPath": "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeDesignautomation_esri\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\erich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\OCPWHermosoE\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
