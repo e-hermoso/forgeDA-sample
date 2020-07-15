@@ -332,7 +332,7 @@ function base_map() {
 
 
 
-                            var mylabel = "<p id=" + oid + " class = 'lblclass' style = 'margin-right:3px'>" + words + " </p>";
+                            var mylabel = "<label id=" + oid + " class = 'lblclass' style = 'margin-right:3px'>" + words + " </label>";
                             var newElement = $(mylabel);
                             parent.append(newElement);
 
@@ -383,9 +383,9 @@ function base_map() {
 
                     }
                 }
-                console.log("Sort element by id")
-                sortElementById();
+
             }, myUploadFailed);
+
         }
 
         function myUploadFailed(response) {
@@ -394,16 +394,7 @@ function base_map() {
 
         }
 
-        function sortElementById() {
-            console.log("Being sorted")
-            $("#content-sidebar p").sort(function (a, b) {
-                return parseInt(a.id) - parseInt(b.id);
-            }).each(function () {
-                var elem = $(this);
-                elem.remove();
-                $(elem).appendTo("#content-sidebar");
-            });
-        }
+
         // Erics - Changed the id name of the button element.
         $("#startWorkitem").click(function () {
             myUpload();
@@ -426,7 +417,7 @@ function base_map() {
 
             lastgeo = '';
 
-            $("p").css("background-color", "white");
+            $("label").css("background-color", "white");
             $(this).css("background-color", "yellow");
             let myline = dict2[oid]
             let mygraphic = new Graphic({
@@ -488,6 +479,10 @@ function base_map() {
                 } else {
                     console.log('Same');
                 }
+
+
+
+
             })
         });
     });

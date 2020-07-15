@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Modify Models - Autodesk Forge</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="https://github.com/Autodesk-Forge/learn.forge.viewhubmodels/raw/master/img/favicon.ico">
+    <!-- Common packages: jQuery, Bootstrap -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- .NET SignalR -->
+    <script src="//unpkg.com/@aspnet/signalr@1.1.0/dist/browser/signalr.min.js"></script>
+    <!-- Files for this project -->
+    <script src="/js/ForgeDesignAutomation.js"></script>
+
+    <!-- Esri API-->
+    <!--<link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css" />-->
+    <!--<script src="https://js.arcgis.com/4.15/"></script>-->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.12/"></script>
+
+    <link href="css/main.css" rel="stylesheet" />
+    <!--<script src="/js/dojo.js"></script>-->
+    <script src="/js/esri.js"></script>
+</head>
+
+<body style="height: 100%;">
+    <!-- Fixed navbar by Bootstrap: https://getbootstrap.com/examples/navbar-fixed-top/ -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav left">
+                <li>
+                    <a href="http://developer.autodesk.com" target="_blank">
+                        <img alt="Autodesk Forge" src="//developer.static.autodesk.com/images/logo_forge-2-line.png"
+                             height="20">
+                    </a>
+                </li>
+            </ul>
+            <!-- Figure out why this button is needed -->
+            <button class="action-button esri-icon-trash" id="reset-map" style="height:33px;width:40px;" title="Clear graphics"></button>
+
+            <div style="float: right; margin-top: 15px; cursor: pointer;">
+                <span style="padding-right: 5px;" data-toggle="modal" data-target="#defineActivityModal" title="Configura AppBundle & Activity">
+                    <span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Configure
+                </span>
+            </div>
+        </div>
+    </nav>
+    <!-- End of navbar -->
+    <div class="container-fluid fill" style="margin-top: 70px;">
+        <div class="row content fill">
+            <div class="col-sm-2 fill">
+                <!-- The commented out code below allows user to input width and height -->
+                <!-- <div class="form-group">
+        <label for="width">Width:</label>
+        <input type="number" class="form-control" id="width" placeholder="Enter new width value">
+    </div>
+    <div class="form-group">
+        <label for="height">Height:</label>
+        <input type="number" class="form-control" id="height" placeholder="Enter new height value">
+    </div>-->
+
+                <div class="form-group">
+                    <form id="importFileForm" style='padding:4px;' method="post" enctype="multipart/form-data">
+                        <label for="inputFile">Input file</label>
+                        <input type="file" name="file" class="form-control-file" id="inputFile" onchange="makex()">
+                    </form>
+                    <!--<label for="inputFile">Input file</label>
+                    <input type="file" name="file" class="form-control-file" id="inputFile" onchange="makex()">-->
+                </div>
+                <div class="form-group" style="display: none;">
+                    <label for="activity">Existing activities</label>
+                    <select class="form-control" id="activity"> </select>
+                </div>
+                <center><button class="btn btn-primary" id="startWorkitem">Start workitem</button></center><br />
+                <div class="alert-box success" id="alert-info"></div>
+            </div>
+            <div class="col-sm-4 fill">
+                <div class="sty-content"  style="max-height: 50%; overflow-y: scroll;">
+                    <div id="content-sidebar">
+                         <h3 align='center'>Legal Description</h3>
+                    </div>
+                </div>
+
+                <pre id="outputlog" style="height: calc(50vh - 65px); overflow-y: scroll;"></pre>
+                <!--<pre id="outputlog" style="height: calc(100vh - 120px); overflow-y: scroll; display: none;" >OutPutLog</pre>-->
+            </div>
+            <div class="col-sm-6 fill">
+                <div id="viewDiv" style="height: calc(100vh - 120px); width:100%; padding: 0; margin: 0;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Define AppBundle & Activity -->
+                <div class="modal fade" id="defineActivityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Create/Update AppBundle & Activity</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-warning"><center>Define AppBundle &amp; Activity only once.<br />Redefine only when your plugin code change (creates a new version).</center></div>
+                                <div class="form-group">
+                                    <label for="localBundles">Select a local AppBundle:</label>
+                                    <select class="form-control" id="localBundles"> </select>
+                                    <b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
+                                </div>
+                                <div class="form-group">
+                                    <label for="engines">Select engine:</label>
+                                    <select class="form-control" id="engines"> </select>
+                                </div>
+                                For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
+                                names. Activities will have file and params input, and file output.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" id="clearAccount">Clear account</button>
+                                <button type="button" class="btn btn-primary" id="createAppBundleActivity">Create/Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</body>
+
+</html>
