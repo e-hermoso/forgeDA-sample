@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "xwQxSl6x7hTPofz8Lb85id823kX5tz5P6CfPj/bMy9tmx3DMkBxLkrwWb9yr28jnrnJ7ihmw99FiTkFk0Di4ZQ==",
+  "dgSpecHash": "SvjAKmEr6lS70wlZ01C1JstN0G3fvk41+b9VXDzvy9dJ+zVjGQtZcDAwAtrm/Kcfx1x2viVsgqZILETHOZ5SoQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
+  "projectFilePath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri\\forgeViewer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\autodesk.forge\\1.7.0\\autodesk.forge.1.7.0.nupkg.sha512",
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\autodesk.forge.core\\1.0.1\\autodesk.forge.core.1.0.1.nupkg.sha512",
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\autodesk.forge.designautomation\\3.0.2\\autodesk.forge.designautomation.3.0.2.nupkg.sha512",
-    "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.4\\microsoft.aspnetcore.jsonpatch.3.1.4.nupkg.sha512",
-    "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.4\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.4.nupkg.sha512",
+    "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.5\\microsoft.aspnetcore.jsonpatch.3.1.5.nupkg.sha512",
+    "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.5\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.5.nupkg.sha512",
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\microsoft.extensions.configuration\\2.1.1\\microsoft.extensions.configuration.2.1.1.nupkg.sha512",
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.1.1\\microsoft.extensions.configuration.abstractions.2.1.1.nupkg.sha512",

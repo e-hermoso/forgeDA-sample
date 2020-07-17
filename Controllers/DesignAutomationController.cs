@@ -62,7 +62,7 @@ namespace forgeDesignautomation.Controllers
         // Local folder for bundles
         public string LocalBundlesFolder { get { return Path.Combine(_env.WebRootPath, "bundles"); } }
         /// Prefix for AppBundles and Activities
-        public static string NickName { get { return OAuthController.GetAppSetting("FORGE_CLIENT_ID"); } }
+        public static string NickName { get { return forgeSample.Controllers.OAuthController.GetAppSetting("FORGE_CLIENT_ID"); } }
         /// Alias for the app (e.g. DEV, STG, PROD). This value may come from an environment variable
         public static string Alias { get { return "dev"; } }
         // Design Automation v3 API
@@ -94,7 +94,7 @@ namespace forgeDesignautomation.Controllers
         [Route("api/forge/designautomation/engines")]
         public async Task<List<string>> GetAvailableEngines()
         {
-            dynamic oauth = await OAuthController.GetInternalAsync();
+            dynamic oauth = await forgeSample.Controllers.OAuthController.GetInternalAsync();
 
             // define Engines API
             Page<string> engines = await _designAutomation.GetEnginesAsync();
@@ -277,7 +277,7 @@ namespace forgeDesignautomation.Controllers
             using (var stream = new FileStream(fileSavePath, FileMode.Create)) await input.inputFile.CopyToAsync(stream);
 
             // OAuth token
-            dynamic oauth = await OAuthController.GetInternalAsync();
+            dynamic oauth = await forgeSample.Controllers.OAuthController.GetInternalAsync();
 
             // upload file to OSS Bucket
             // 1. ensure bucket existis
@@ -347,7 +347,7 @@ namespace forgeDesignautomation.Controllers
 
             // prepare & submit workitem
             // the callback contains the connectionId (used to identify the client) and the outputFileName of this workitem
-            string callbackUrl = string.Format("{0}/api/forge/callback/designautomation?id={1}&outputFileName={2}", OAuthController.GetAppSetting("FORGE_WEBHOOK_URL"), browerConnectionId, outputFileNameOSSjson);
+            string callbackUrl = string.Format("{0}/api/forge/callback/designautomation?id={1}&outputFileName={2}", forgeSample.Controllers.OAuthController.GetAppSetting("FORGE_WEBHOOK_URL"), browerConnectionId, outputFileNameOSSjson);
             WorkItem workItemSpec = new WorkItem()
             {
                 ActivityId = activityName,

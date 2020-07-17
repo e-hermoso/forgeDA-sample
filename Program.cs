@@ -9,13 +9,15 @@ using Microsoft.Extensions.Logging;
 
 using Autodesk.Forge.Core;
 using Autodesk.Forge.DesignAutomation;
+using System.Net;
 
-namespace forgeDesignautomation
+namespace forgeViewer
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            // ForgeDesignautomation: Here tells our application to load Forge Client ID and Secret from the environment variables defined above.
             CreateHostBuilder(args).ConfigureAppConfiguration(builder =>
             {
                 builder.AddForgeAlternativeEnvironmentVariables();
@@ -23,7 +25,6 @@ namespace forgeDesignautomation
             {
                 services.AddDesignAutomation(hostContext.Configuration);
             }).Build().Run();
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
