@@ -45,11 +45,11 @@
             <!-- Figure out why this button is needed -->
             <button class="action-button esri-icon-trash" id="reset-map" style="height:33px;width:40px;" title="Clear graphics"></button>
 
-            <!--<div style="float: right; margin-top: 15px; cursor: pointer;">
+            <div style="float: right; margin-top: 15px; cursor: pointer;">
                 <span style="padding-right: 5px;" data-toggle="modal" data-target="#defineActivityModal" title="Configura AppBundle & Activity">
                     <span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Configure
                 </span>
-            </div>-->
+            </div>
         </div>
     </nav>
     <!-- End of navbar -->
@@ -60,11 +60,7 @@
                 <!-- <div class="form-group">
                     <label for="width">Width:</label>
                     <input type="number" class="form-control" id="width" placeholder="Enter new width value">
-                </div>
-                <div class="form-group">
-                    <label for="height">Height:</label>
-                    <input type="number" class="form-control" id="height" placeholder="Enter new height value">
-                </div>-->
+                </div> -->
 
                 <div class="form-group">
                     <form id="importFileForm" style='padding:4px;' method="post" enctype="multipart/form-data">
@@ -74,6 +70,13 @@
                     <!--<label for="inputFile">Input file</label>
                     <input type="file" name="file" class="form-control-file" id="inputFile" onchange="makex()">-->
                 </div>
+                <div class="form-group">
+                    <label for="mapType">Map type select</label>
+                    <select class="form-control" id="mapType" >
+                        <option value="TractMap">Tract Map</option>
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <!-- style="display: none;" -->
                     <label for="activity">Existing activities</label>

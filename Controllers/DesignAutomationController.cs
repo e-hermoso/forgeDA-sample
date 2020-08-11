@@ -220,7 +220,7 @@ namespace forgeDesignautomation.Controllers
                     {
                         { "inputFile", new Parameter() { Description = "input file", LocalName = "$(inputFile)", Ondemand = false, Required = true, Verb = Verb.Get, Zip = false } },
                         { "result", new Parameter() { Description = "Resulting File", LocalName = "parcel.json", Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } },
-                        //{ "inputJson", new Parameter() { Description = "input json", LocalName = "params.json", Ondemand = false, Required = false, Verb = Verb.Get, Zip = false } },
+                        { "inputJson", new Parameter() { Description = "input json", LocalName = "params.json", Ondemand = false, Required = false, Verb = Verb.Get, Zip = false } },
                         //{ "outputFile", new Parameter() { Description = "output file", LocalName = "outputFile." + engineAttributes.extension, Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } }
                     },
                     Settings = new Dictionary<string, ISetting>()
@@ -267,8 +267,7 @@ namespace forgeDesignautomation.Controllers
             // basic input validation
             JObject workItemData = JObject.Parse(input.data);
             // Extracts the input field data from a post ajax call.
-            //string widthParam = workItemData["width"].Value<string>();
-            //string heigthParam = workItemData["height"].Value<string>();
+            string mapTypeParam = workItemData["mapType"].Value<string>();
             string activityName = string.Format("{0}.{1}", NickName, workItemData["activityName"].Value<string>());
             string browerConnectionId = workItemData["browerConnectionId"].Value<string>();
 
@@ -322,28 +321,25 @@ namespace forgeDesignautomation.Controllers
                 }
             };
             // 3. input json
-            //dynamic inputJson = new JObject();
-            //inputJson.Width = widthParam;
-            //inputJson.Height = heigthParam;
-            //XrefTreeArgument inputJsonArgument = new XrefTreeArgument()
-            //{
-            //    Url = "data:application/json, " + ((JObject)inputJson).ToString(Formatting.None).Replace("\"", "'")
-            //};
-
-            // 4. output file
-            string outputFileNameOSS = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), Path.GetFileName(input.inputFile.FileName)); // avoid overriding
-            XrefTreeArgument outputFileArgument = new XrefTreeArgument()
+            dynamic inputJson = new JObject();
+            inputJson.MapType = mapTypeParam;
+            XrefTreeArgument inputJsonArgument = new XrefTreeArgument()
             {
-                Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSS),
-                Verb = Verb.Put,
-                Headers = new Dictionary<string, string>()
-                {
-                    {"Authorization", "Bearer " + oauth.access_token }
-                }
+                Url = "data:application/json, " + ((JObject)inputJson).ToString(Formatting.None).Replace("\"", "'")
             };
 
-            //DesignAutomation4Civil3D da4c3d = new DesignAutomation4Civil3D();
-
+            // 4. output file
+            // Save the output file in a bucket.
+            //string outputFileNameOSS = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), Path.GetFileName(input.inputFile.FileName)); // avoid overriding
+            //XrefTreeArgument outputFileArgument = new XrefTreeArgument()
+            //{
+            //    Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSS),
+            //    Verb = Verb.Put,
+            //    Headers = new Dictionary<string, string>()
+            //    {
+            //        {"Authorization", "Bearer " + oauth.access_token }
+            //    }
+            //};
 
             // prepare & submit workitem
             // the callback contains the connectionId (used to identify the client) and the outputFileName of this workitem
@@ -352,13 +348,13 @@ namespace forgeDesignautomation.Controllers
             {
                 ActivityId = activityName,
                 Arguments = new Dictionary<string, IArgument>()
-        {
-            { "inputFile", inputFileArgument },
-            { "result", inputFileTwoArgument},
-            //{ "inputJson",  inputJsonArgument },
+            {
+                { "inputFile", inputFileArgument },
+                { "result", inputFileTwoArgument},
+                { "inputJson",  inputJsonArgument },
             //{ "outputFile", outputFileArgument },
             { "onComplete", new XrefTreeArgument { Verb = Verb.Post, Url = callbackUrl } }
-        }
+            }
             };
             WorkItemStatus workItemStatus = await _designAutomation.CreateWorkItemAsync(workItemSpec);
 

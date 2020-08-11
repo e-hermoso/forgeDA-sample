@@ -100,7 +100,7 @@ function startWorkitem() {
         formData.append('inputFile', file);
         // Append users input of width and height 
         formData.append('data', JSON.stringify({
-            //width: $('#width').val(),
+            mapType: $('#mapType').val(),
             //height: $('#height').val(),
             activityName: $('#activity').val(),
             browerConnectionId: connectionId
