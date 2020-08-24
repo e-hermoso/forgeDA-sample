@@ -6,6 +6,33 @@
     $('#createAppBundleActivity').click(createAppBundleActivity);
     $('#startWorkitem').click(startWorkitem);
     startConnection();
+
+    // Interact with data table
+    // Add event listener for opening and closing details
+    $('#example tbody').on('click', 'td.details-controls', function () {
+        //var tr = $(this).closest('tr');
+        var patt = /\d+/i;
+        var idParentName = $(this).attr('id')
+        var resultMatch = idParentName.match(patt); // returns an Array (object)
+        var childClassName = "childTbl-" + resultMatch[0].toString() // create child table name
+
+        // check if the child table has class name "show-tbl"
+        var check = $("#" + childClassName).hasClass("show_tbl")
+        //console.log(childClassName)
+
+        if(check){
+        // Open this row
+        $("#" + childClassName).removeClass("animation-hide-detail")
+        $("#" + childClassName).removeClass("show_tbl")
+        $("#" + childClassName).addClass("animation-show-detail")
+
+        }
+        else{
+        // Close this row
+        $("#" + childClassName).removeClass("animation-show-detail")
+        //$("#" + childClassName).addClass("animation-hide-detail")
+        $("#" + childClassName).addClass("show_tbl")
+        }
 });
 
 function prepareLists() {
@@ -98,7 +125,7 @@ function startWorkitem() {
     startConnection(function () {
         var formData = new FormData();
         formData.append('inputFile', file);
-        // Append users input of width and height 
+        // Append users input of width and height
         formData.append('data', JSON.stringify({
             mapType: $('#mapType').val(),
             //height: $('#height').val(),
@@ -151,7 +178,7 @@ function startConnection(onReady) {
      //Have an event handler for a type of message that we're receiving.
      //In this particular case we call that "downloadResult" from the server.
      //This allow us to use "connection.on()" and specify our ket "downloadResult".
-     //It also takes a function, so this function is how do you want your client side 
+     //It also takes a function, so this function is how do you want your client side
      //to react when it recives that particular message.
     connection.on("downloadResult", function (url) {
         writeLog('<a href="' + url + '">Download result file here</a>');

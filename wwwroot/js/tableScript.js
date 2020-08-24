@@ -139,114 +139,87 @@
 //  ]
 //}
 
-$(document).ready(function() {
-  /* Formatting function for row details - modify as you need */
-  function format(subCheckObj, number) {
-    //console.log(d[4])
-      // `d` is the original data object for the row
-      var subTableFormat = "<tr class='show_tbl' id='childTbl-"+ number.toString() + "'><td colspan=5><table class='child-sub-table' cellpadding='5' cellspacing='0' border='0' style='padding-left:50px;'>"
 
-      $.each(subCheckObj, function(m, obj_five){
-        //console.log(m)
-        //console.log(obj_five)
-        subTableFormat = subTableFormat + "<tr class='main-child-row'>"
-        subTableFormat = subTableFormat + "<td>" + m + "</td>"
-        $.each(obj_five, function(n, obj_six){
+/* Formatting function for row details - modify as you need */
+function format(subCheckObj, number) {
+  //console.log(d[4])
+    // `d` is the original data object for the row
+    var subTableFormat = "<tr class='show_tbl' id='childTbl-"+ number.toString() + "'><td colspan=5><table class='child-sub-table' cellpadding='5' cellspacing='0' border='0' style='padding-left:50px;'>"
+
+    $.each(subCheckObj, function(m, obj_five){
+      //console.log(m)
+      //console.log(obj_five)
+      subTableFormat = subTableFormat + "<tr class='main-child-row'>"
+      subTableFormat = subTableFormat + "<td>" + m + "</td>"
+      $.each(obj_five, function(n, obj_six){
+        //console.log(n)
+        //console.log(obj_six)
+        //subTableFormat = subTableFormat + "<td>" + n + "</td>"
+
+        $.each(obj_six,function(p,obj_seven){
           //console.log(n)
-          //console.log(obj_six)
-          //subTableFormat = subTableFormat + "<td>" + n + "</td>"
-
-          $.each(obj_six,function(p,obj_seven){
-            //console.log(n)
-            if(typeof obj_seven == 'string'){
-              subTableFormat = subTableFormat + "<td>" + obj_seven + "</td>"
-            }
-          })
+          if(typeof obj_seven == 'string'){
+            subTableFormat = subTableFormat + "<td>" + obj_seven + "</td>"
+          }
         })
-        subTableFormat = subTableFormat + "</tr>"
       })
+      subTableFormat = subTableFormat + "</tr>"
+    })
 
-      subTableFormat = subTableFormat + "</table></td></tr>"
+    subTableFormat = subTableFormat + "</table></td></tr>"
 
-      return  subTableFormat
-  }
+    return  subTableFormat
+}
 
-    // function(key,value)
-  function builtTable(dataJson) {
-      $.each(dataJson["Map_checkResults"], function (i, obj) {
-          // console.log(i)
-          // console.log(obj)
-          // console.log(Object.keys(obj)) // Returns an array of keys in an object
-          var autocad_layOutName = Object.keys(obj)[i]
-          // obj equals dataJson["Map_checkResults"][i] : same results
-          $.each(obj, function (j, obj_two) {
-              // console.log(j) // Autocad Layout Name
-              // console.log(obj_two) // list of objects
-              var tableBody = ""
-              var rowNumber = 0
-              $.each(obj_two, function (k, obj_three) {
-                  //console.log(k)
-                  console.log("===============================")
-                  console.log("MAIN CHECKS")
-                  console.log(obj_three)
-                  console.log("===============================")
-                  //$("#dynamicTable").append("<tr>")
+  // function(key,value)
+function builtTable(dataJson) {
+    $.each(dataJson["Map_checkResults"], function (i, obj) {
+        // console.log(i)
+        // console.log(obj)
+        // console.log(Object.keys(obj)) // Returns an array of keys in an object
+        var autocad_layOutName = Object.keys(obj)[i]
+        // obj equals dataJson["Map_checkResults"][i] : same results
+        $.each(obj, function (j, obj_two) {
+            // console.log(j) // Autocad Layout Name
+            // console.log(obj_two) // list of objects
+            var tableBody = ""
+            var rowNumber = 0
+            $.each(obj_two, function (k, obj_three) {
+                //console.log(k)
+                console.log("===============================")
+                console.log("MAIN CHECKS")
+                console.log(obj_three)
+                console.log("===============================")
+                //$("#dynamicTable").append("<tr>")
 
-                  $.each(obj_three, function (l, obj_four) {
-                      rowNumber = rowNumber + 1
-                      // console.log(l)
-                      // console.log(obj_four)
-                      tableBody = tableBody + "<tr class='main-parent-row'>"
-                      tableBody = tableBody + "<td class='details-controls'id='parentTbl-" + rowNumber.toString() + "'>"
-                      tableBody = tableBody + l
-                      tableBody = tableBody + "</td>"
-                      tableBody = tableBody + "<td>"
-                      tableBody = tableBody + "result"
-                      tableBody = tableBody + "</td>"
-                      tableBody = tableBody + "<td>"
-                      tableBody = tableBody + "message"
-                      tableBody = tableBody + "</td>"
-                      tableBody = tableBody + "<td>"
-                      tableBody = tableBody + "pass"
-                      tableBody = tableBody + "</td>"
-                      tableBody = tableBody + "</tr>"
-                      tableBody = tableBody + format(obj_four, rowNumber)
-                      //$(".tr_mainCheck").append("<td>" + l + "</td>")
-                  })
-                  // tableBody = tableBody + "</tr>"
-                  // tableBody = tableBody + "</tr>"
-              })
-              $("#dynamicTable").append(tableBody)
-          })
-      })
-  }
+                $.each(obj_three, function (l, obj_four) {
+                    rowNumber = rowNumber + 1
+                    // console.log(l)
+                    // console.log(obj_four)
+                    tableBody = tableBody + "<tr class='main-parent-row'>"
+                    tableBody = tableBody + "<td class='details-controls'id='parentTbl-" + rowNumber.toString() + "'>"
+                    tableBody = tableBody + l
+                    tableBody = tableBody + "</td>"
+                    tableBody = tableBody + "<td>"
+                    tableBody = tableBody + "result"
+                    tableBody = tableBody + "</td>"
+                    tableBody = tableBody + "<td>"
+                    tableBody = tableBody + "message"
+                    tableBody = tableBody + "</td>"
+                    tableBody = tableBody + "<td>"
+                    tableBody = tableBody + "pass"
+                    tableBody = tableBody + "</td>"
+                    tableBody = tableBody + "</tr>"
+                    tableBody = tableBody + format(obj_four, rowNumber)
+                    //$(".tr_mainCheck").append("<td>" + l + "</td>")
+                })
+                // tableBody = tableBody + "</tr>"
+                // tableBody = tableBody + "</tr>"
+            })
+            $("#dynamicTable").append(tableBody)
+        })
+    })
+}
 
-    //var table = $('#example').DataTable();
-
-  // Add event listener for opening and closing details
-  $('#example tbody').on('click', 'td.details-controls', function () {
-      //var tr = $(this).closest('tr');
-      var patt = /\d+/i;
-      var idParentName = $(this).attr('id')
-      var resultMatch = idParentName.match(patt); // returns an Array (object)
-      var childClassName = "childTbl-" + resultMatch[0].toString() // create child table name
-
-      // check if the child table has class name "show-tbl"
-      var check = $("#" + childClassName).hasClass("show_tbl")
-      //console.log(childClassName)
-
-      if(check){
-      // Open this row
-      $("#" + childClassName).removeClass("animation-hide-detail")
-      $("#" + childClassName).removeClass("show_tbl")
-      $("#" + childClassName).addClass("animation-show-detail")
-
-      }
-      else{
-      // Close this row
-      $("#" + childClassName).removeClass("animation-show-detail")
-      //$("#" + childClassName).addClass("animation-hide-detail")
-      $("#" + childClassName).addClass("show_tbl")
-      }
-  });
+  //var table = $('#example').DataTable();
 });
