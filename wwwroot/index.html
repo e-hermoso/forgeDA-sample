@@ -24,11 +24,17 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.12/"></script>
 
-    <!-- this project files -->
+    <!-- Esri API-->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.12/"></script>
+
+    <!-- This project files -->
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/tabelStyle.css" rel="stylesheet" />
     <script src="js/ForgeTree.js"></script>
     <script src="js/ForgeViewer.js"></script>
     <script src="js/esri.js"></script>
+    <script src="js/tableScript.js"></script>
 </head>
 <body>
     <!-- Fixed navbar by Bootstrap: https://getbootstrap.com/examples/navbar-fixed-top/ -->
@@ -104,8 +110,27 @@
                         <h3 align='center'>Legal Description</h3>
                     </div>
                 </div>
-
-                <pre id="outputlog" style="height: calc(50vh - 65px); overflow-y: scroll;"></pre>
+                <!-- Table Record-->
+                <div class="table-container">
+                    <h2>Table</h2>
+                    <p>Temp static table:</p>
+                    <div class="">
+                        <table id="example" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>CheckList</th>
+                                    <th>Results</th>
+                                    <th>Message</th>
+                                    <th>Pass/Fail</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dynamicTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Note: Code below display the results when using design automation -->
+                <!--<pre id="outputlog" style="height: calc(50vh - 65px); overflow-y: scroll;"></pre>-->
                 <!--<pre id="outputlog" style="height: calc(100vh - 120px); overflow-y: scroll; display: none;" >OutPutLog</pre>-->
             </div>
             <div class="col-sm-6 fill">

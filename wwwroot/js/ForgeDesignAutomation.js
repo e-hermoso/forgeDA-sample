@@ -123,10 +123,13 @@ function startWorkitem() {
 
 
 function writeLog(text) {
-    $('#outputlog').append('<div style="border-top: 1px dashed #C0C0C0">' + text + '</div>');
+    //$('#outputlog').append('<div style="border-top: 1px dashed #C0C0C0">' + text + '</div>');
     //var elem = document.getElementById('outputlog');
-    var elem = $('#outputlog')[0];
-    elem.scrollTop = elem.scrollHeight;
+    console.log("================== Write Log Start ==================")
+    console.log(text)
+    console.log("================== Write Log End ==================")
+    //var elem = $('#outputlog')[0];
+    //elem.scrollTop = elem.scrollHeight;
 }
 
 var connection;
@@ -174,6 +177,8 @@ function getJsonFromDA(url) {
         const resultData = JSON.parse(data);
         console.log(status)
         console.log(resultData);
+        // Generate dynamic table
+        builtTable(resultData)
     });
     //$.get(url)
     //    .done(function (data) {

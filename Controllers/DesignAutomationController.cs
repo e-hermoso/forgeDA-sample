@@ -201,7 +201,7 @@ namespace forgeDesignautomation.Controllers
             string appBundleName = zipFileName + "AppBundle";
             string activityName = zipFileName + "Activity";
 
-            // 
+            
             Page<string> activities = await _designAutomation.GetActivitiesAsync();
             string qualifiedActivityId = string.Format("{0}.{1}+{2}", NickName, activityName, Alias);
             if (!activities.Data.Contains(qualifiedActivityId))
