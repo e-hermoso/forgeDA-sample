@@ -33,6 +33,7 @@
         //$("#" + childClassName).addClass("animation-hide-detail")
         $("#" + childClassName).addClass("show_tbl")
         }
+    });
 });
 
 function prepareLists() {

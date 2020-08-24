@@ -222,4 +222,30 @@ function builtTable(dataJson) {
 }
 
   //var table = $('#example').DataTable();
-});
+
+// // Add event listener for opening and closing details
+// $('#example tbody').on('click', 'td.details-controls', function () {
+//     //var tr = $(this).closest('tr');
+//     var patt = /\d+/i;
+//     var idParentName = $(this).attr('id')
+//     var resultMatch = idParentName.match(patt); // returns an Array (object)
+//     var childClassName = "childTbl-" + resultMatch[0].toString() // create child table name
+//
+//     // check if the child table has class name "show-tbl"
+//     var check = $("#" + childClassName).hasClass("show_tbl")
+//     //console.log(childClassName)
+//
+//     if(check){
+//     // Open this row
+//     $("#" + childClassName).removeClass("animation-hide-detail")
+//     $("#" + childClassName).removeClass("show_tbl")
+//     $("#" + childClassName).addClass("animation-show-detail")
+//
+//     }
+//     else{
+//     // Close this row
+//     $("#" + childClassName).removeClass("animation-show-detail")
+//     //$("#" + childClassName).addClass("animation-hide-detail")
+//     $("#" + childClassName).addClass("show_tbl")
+//     }
+// });
