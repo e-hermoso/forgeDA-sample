@@ -207,6 +207,7 @@ function getJsonFromDA(url) {
         console.log(resultData);
         // Generate dynamic table
         builtTable(resultData)
+        base_map(resultData);
     });
     //$.get(url)
     //    .done(function (data) {
