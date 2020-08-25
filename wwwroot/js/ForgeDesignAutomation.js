@@ -205,8 +205,9 @@ function getJsonFromDA(url) {
         const resultData = JSON.parse(data);
         console.log(status)
         console.log(resultData);
-        // Generate dynamic table
+        // Generate dynamic table by calling the function from tableScript.js
         builtTable(resultData)
+        // build esri map, function from esri.js
         base_map(resultData);
     });
     //$.get(url)

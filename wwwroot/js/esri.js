@@ -35,8 +35,8 @@ var workingGDB;
     ], function(Map, MapView,Polyline,Graphic,GraphicsLayer,SpatialReference,esriRequest,Geoprocessor,DataFile,esriConfig,MapImageLayer,TileLayer,BasemapToggle,Basemap,Point,Polygon) {
       var dataFile = new DataFile();
       esriConfig.request.timeout = 300000;
-      var mylocation = '{"displayFieldName": "","geometryType": "esriGeometryPoint","spatialReference": {"wkid": 2230,"latestWkid": 2230},"fields": [{"name": "OBJECTID","type": "esriFieldTypeOID","alias": "OBJECTID"}],"features": [{"attributes": {"OBJECTID": 1},"geometry": {"x": 6068758.9199999999,"y": 2242984.3800000008}}],"exceededTransferLimit": false}'
-
+            var mylocation = '{"displayFieldName": "","geometryType": "esriGeometryPoint","spatialReference": {"wkid": 2230,"latestWkid": 2230},"fields": [{"name": "OBJECTID","type": "esriFieldTypeOID","alias": "OBJECTID"}],"features": [{"attributes": {"OBJECTID": 1},"geometry": {"x": 6068758.9199999999,"y": 2242984.3800000008}}],"exceededTransferLimit": false}'
+            var polylist = []
       var lods = [{
           "level": 0,
           "resolution": 217.01388888888889,
@@ -260,15 +260,15 @@ var workingGDB;
 
         }
 
-        view.on("click",function(evt){
-          if (findposition){
-            view.graphics.removeAll();
-            console.log(evt.mapPoint.x, evt.mapPoint.y);
-            mylocation = '{"displayFieldName": "","geometryType": "esriGeometryPoint","spatialReference": {"wkid": 2230,"latestWkid": 2230},"fields": [{"name": "OBJECTID","type": "esriFieldTypeOID","alias": "OBJECTID"}],"features": [{"attributes": {"OBJECTID": 1},"geometry": {"x": '+evt.mapPoint.x+',"y": '+evt.mapPoint.y+'}}],"exceededTransferLimit": false}'
-            view.graphics.add(new Graphic(evt.mapPoint,markerSymbol3));
-          }
-
-        })
+        // view.on("click",function(evt){
+        //   if (findposition){
+        //     view.graphics.removeAll();
+        //     console.log(evt.mapPoint.x, evt.mapPoint.y);
+        //     mylocation = '{"displayFieldName": "","geometryType": "esriGeometryPoint","spatialReference": {"wkid": 2230,"latestWkid": 2230},"fields": [{"name": "OBJECTID","type": "esriFieldTypeOID","alias": "OBJECTID"}],"features": [{"attributes": {"OBJECTID": 1},"geometry": {"x": '+evt.mapPoint.x+',"y": '+evt.mapPoint.y+'}}],"exceededTransferLimit": false}'
+        //     view.graphics.add(new Graphic(evt.mapPoint,markerSymbol3));
+        //   }
+        //
+        // })
 
 
       function clearup(){
@@ -330,6 +330,7 @@ var workingGDB;
                 rings: ring,
                 spatialReference: view.spatialReference
               });
+              polylist.push(poly)
               par2poly[mkey] = poly
 
               var pAtt = {
@@ -626,8 +627,12 @@ var workingGDB;
 
 
         }
-        $('#apncount').text(pnum)
-
+          $('#apncount').text(pnum)
+          lblgraphicslayer.when(function () {
+              view.goTo(polylist, {
+                  zoom: 10
+              });
+          });
       }
 
       ericJson(jsonData)
