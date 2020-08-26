@@ -57,3 +57,24 @@ function getForgeToken(callback) {
         }
     });
 }
+
+function getAllLeafComponents(viewer, callback) {
+    var cbCount = 0; // count pending callbacks
+    var components = []; // store the results
+    var tree; // the instance tree
+    function getLeafComponentsRec(parent) {
+        cbCount++;
+        if (tree.getChildCount(parent) != 0) {
+            tree.enumNodeChildren(parent, function (children) {
+                getLeafComponentsRec(children);
+            }, false);
+        } else {
+            components.push(parent);
+        }
+        if (--cbCount == 0) callback(components);
+    }
+    viewer.getObjectTree(function (objectTree) {
+        tree = objectTree;
+        var allLeafComponents = getLeafComponentsRec(tree.getRootId());
+    });
+}
