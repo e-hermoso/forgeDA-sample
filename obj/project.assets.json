@@ -47,7 +47,7 @@
           "lib/netstandard2.0/Autodesk.Forge.DesignAutomation.dll": {}
         }
       },
-      "Microsoft.AspNetCore.JsonPatch/3.1.5": {
+      "Microsoft.AspNetCore.JsonPatch/3.1.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
@@ -60,10 +60,10 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.5": {
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.JsonPatch": "3.1.5",
+          "Microsoft.AspNetCore.JsonPatch": "3.1.4",
           "Newtonsoft.Json": "12.0.2",
           "Newtonsoft.Json.Bson": "1.0.2"
         },
@@ -392,10 +392,10 @@
         "lib/netstandard2.0/Autodesk.Forge.DesignAutomation.dll"
       ]
     },
-    "Microsoft.AspNetCore.JsonPatch/3.1.5": {
-      "sha512": "vvQ9G+o8+uO6pA2iz4oYsKEtybor1XYQif4HrRQXH4Uco9NTt411rcHk4eepEIb8ZQ7z5X0JpHZZv1A6dCcvaA==",
+    "Microsoft.AspNetCore.JsonPatch/3.1.4": {
+      "sha512": "ZNy+dmMOog7PyPCVLfweNYOP3rZzo4eFFrIKS5QjMd/7w2AJ12aVu9rLpZOV0XuQWxUPE7g9ZT75D05Z7wvfxw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.jsonpatch/3.1.5",
+      "path": "microsoft.aspnetcore.jsonpatch/3.1.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -403,14 +403,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.xml",
-        "microsoft.aspnetcore.jsonpatch.3.1.5.nupkg.sha512",
+        "microsoft.aspnetcore.jsonpatch.3.1.4.nupkg.sha512",
         "microsoft.aspnetcore.jsonpatch.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.5": {
-      "sha512": "dqZV405jbxRnUfekVsf+krvxbmNrF1JQh+XG66H6GQzYb8kIJKM/bZgK2+oDtXb4tgGHeesLG+M/sHbvtuQOrQ==",
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.4": {
+      "sha512": "OL8SnwFxtFZbcb0z17v0Zf2HMIi/BTbgnxLv1NU+/OEnZEtf0a4XND21IS/bcQoPp/84szhsYQnbxGzCCWQlfg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/3.1.5",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/3.1.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -418,7 +418,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll",
         "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.xml",
-        "microsoft.aspnetcore.mvc.newtonsoftjson.3.1.5.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.newtonsoftjson.3.1.4.nupkg.sha512",
         "microsoft.aspnetcore.mvc.newtonsoftjson.nuspec"
       ]
     },
@@ -854,7 +854,7 @@
     ".NETCoreApp,Version=v3.1": [
       "Autodesk.Forge >= 1.7.0",
       "Autodesk.Forge.DesignAutomation >= 3.0.2",
-      "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.5"
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.4"
     ]
   },
   "packageFolders": {
@@ -863,11 +863,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\forgeViewer.csproj",
-      "projectName": "forgeViewer",
-      "projectPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\forgeViewer.csproj",
+      "projectUniqueName": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
+      "projectName": "forgeDesignautomation",
+      "projectPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeDesignautomation_esri\\forgeDesignautomation.csproj",
       "packagesPath": "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\obj\\",
+      "outputPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeDesignautomation_esri\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\OCPWHermosoE\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -904,7 +904,7 @@
           },
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
             "target": "Package",
-            "version": "[3.1.5, )"
+            "version": "[3.1.4, )"
           }
         },
         "imports": [

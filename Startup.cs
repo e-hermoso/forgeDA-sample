@@ -10,7 +10,8 @@ using Microsoft.Extensions.Hosting;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace forgeViewer
+
+namespace forgeDesignautomation
 {
     public class Startup
     {
@@ -20,27 +21,22 @@ namespace forgeViewer
         {
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddNewtonsoftJson();
             services.AddSignalR();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
             app.UseFileServer();
-
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            app.UseHttpsRedirection();
             app.UseMvc();
 
             app.UseRouting();
             app.UseEndpoints(routes =>
             {
-                routes.MapHub<forgeDesignautomation.Controllers.DesignAutomationHub>("/api/signalr/designautomation");
+                routes.MapHub<Controllers.DesignAutomationHub>("/api/signalr/designautomation");
             });
+
         }
+
     }
 }

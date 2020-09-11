@@ -12,20 +12,20 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "FORGE_CALLBACK_URL": "http://localhost:3000/api/forge/callback/oauth",
         "FORGE_CLIENT_SECRET": "7slR7bH0VGV63p0s",
         "ASPNETCORE_URLS": "http://localhost:3000",
         "FORGE_CLIENT_ID": "tXrGJuyLQBriNpecdVAwYCAooHwemd6Y",
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "FORGE_WEBHOOK_URL": "http://localhost:3000/api/forge/callback/oauth"
       }
     },
-    "forgeViewer": {
+    "forgeDesignautomation": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5000"
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
   }
 }

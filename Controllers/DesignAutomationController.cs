@@ -62,7 +62,7 @@ namespace forgeDesignautomation.Controllers
         // Local folder for bundles
         public string LocalBundlesFolder { get { return Path.Combine(_env.WebRootPath, "bundles"); } }
         /// Prefix for AppBundles and Activities
-        public static string NickName { get { return forgeSample.Controllers.OAuthController.GetAppSetting("FORGE_CLIENT_ID"); } }
+        public static string NickName { get { return OAuthController.GetAppSetting("FORGE_CLIENT_ID"); } }
         /// Alias for the app (e.g. DEV, STG, PROD). This value may come from an environment variable
         public static string Alias { get { return "dev"; } }
         // Design Automation v3 API
@@ -94,7 +94,7 @@ namespace forgeDesignautomation.Controllers
         [Route("api/forge/designautomation/engines")]
         public async Task<List<string>> GetAvailableEngines()
         {
-            dynamic oauth = await forgeSample.Controllers.OAuthController.GetInternalAsync();
+            dynamic oauth = await OAuthController.GetInternalAsync();
 
             // define Engines API
             Page<string> engines = await _designAutomation.GetEnginesAsync();
@@ -181,7 +181,7 @@ namespace forgeDesignautomation.Controllers
         private dynamic EngineAttributes(string engine)
         {
             if (engine.Contains("3dsMax")) return new { commandLine = "$(engine.path)\\3dsmaxbatch.exe -sceneFile \"$(args[inputFile].path)\" $(settings[script].path)", extension = "max", script = "da = dotNetClass(\"Autodesk.Forge.Sample.DesignAutomation.Max.RuntimeExecute\")\nda.ModifyWindowWidthHeight()\n" };
-            if (engine.Contains("AutoCAD")) return new { commandLine = "$(engine.path)\\accoreconsole.exe /i \"$(args[inputFile].path)\" /al \"$(appbundles[{0}].path)\" /s $(settings[script].path)", extension = "dwg", script = "AMCRUN\n" };
+            if (engine.Contains("AutoCAD")) return new { commandLine = "$(engine.path)\\accoreconsole.exe /i \"$(args[inputFile].path)\" /al \"$(appbundles[{0}].path)\" /s $(settings[script].path)", extension = "dwg", script = "PARCELINFO\n" };
             if (engine.Contains("Inventor")) return new { commandLine = "$(engine.path)\\inventorcoreconsole.exe /i \"$(args[inputFile].path)\" /al \"$(appbundles[{0}].path)\"", extension = "ipt", script = string.Empty };
             if (engine.Contains("Revit")) return new { commandLine = "$(engine.path)\\revitcoreconsole.exe /i \"$(args[inputFile].path)\" /al \"$(appbundles[{0}].path)\"", extension = "rvt", script = string.Empty };
             throw new Exception("Invalid engine");
@@ -201,7 +201,7 @@ namespace forgeDesignautomation.Controllers
             string appBundleName = zipFileName + "AppBundle";
             string activityName = zipFileName + "Activity";
 
-            
+            // 
             Page<string> activities = await _designAutomation.GetActivitiesAsync();
             string qualifiedActivityId = string.Format("{0}.{1}+{2}", NickName, activityName, Alias);
             if (!activities.Data.Contains(qualifiedActivityId))
@@ -220,7 +220,7 @@ namespace forgeDesignautomation.Controllers
                     {
                         { "inputFile", new Parameter() { Description = "input file", LocalName = "$(inputFile)", Ondemand = false, Required = true, Verb = Verb.Get, Zip = false } },
                         { "result", new Parameter() { Description = "Resulting File", LocalName = "parcel.json", Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } },
-                        { "inputJson", new Parameter() { Description = "input json", LocalName = "params.json", Ondemand = false, Required = false, Verb = Verb.Get, Zip = false } },
+                        //{ "inputJson", new Parameter() { Description = "input json", LocalName = "params.json", Ondemand = false, Required = false, Verb = Verb.Get, Zip = false } },
                         //{ "outputFile", new Parameter() { Description = "output file", LocalName = "outputFile." + engineAttributes.extension, Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } }
                     },
                     Settings = new Dictionary<string, ISetting>()
@@ -267,7 +267,8 @@ namespace forgeDesignautomation.Controllers
             // basic input validation
             JObject workItemData = JObject.Parse(input.data);
             // Extracts the input field data from a post ajax call.
-            string mapTypeParam = workItemData["mapType"].Value<string>();
+            //string widthParam = workItemData["width"].Value<string>();
+            //string heigthParam = workItemData["height"].Value<string>();
             string activityName = string.Format("{0}.{1}", NickName, workItemData["activityName"].Value<string>());
             string browerConnectionId = workItemData["browerConnectionId"].Value<string>();
 
@@ -276,7 +277,7 @@ namespace forgeDesignautomation.Controllers
             using (var stream = new FileStream(fileSavePath, FileMode.Create)) await input.inputFile.CopyToAsync(stream);
 
             // OAuth token
-            dynamic oauth = await forgeSample.Controllers.OAuthController.GetInternalAsync();
+            dynamic oauth = await OAuthController.GetInternalAsync();
 
             // upload file to OSS Bucket
             // 1. ensure bucket existis
@@ -321,40 +322,43 @@ namespace forgeDesignautomation.Controllers
                 }
             };
             // 3. input json
-            dynamic inputJson = new JObject();
-            inputJson.MapType = mapTypeParam;
-            XrefTreeArgument inputJsonArgument = new XrefTreeArgument()
-            {
-                Url = "data:application/json, " + ((JObject)inputJson).ToString(Formatting.None).Replace("\"", "'")
-            };
+            //dynamic inputJson = new JObject();
+            //inputJson.Width = widthParam;
+            //inputJson.Height = heigthParam;
+            //XrefTreeArgument inputJsonArgument = new XrefTreeArgument()
+            //{
+            //    Url = "data:application/json, " + ((JObject)inputJson).ToString(Formatting.None).Replace("\"", "'")
+            //};
 
             // 4. output file
-            // Save the output file in a bucket.
-            //string outputFileNameOSS = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), Path.GetFileName(input.inputFile.FileName)); // avoid overriding
-            //XrefTreeArgument outputFileArgument = new XrefTreeArgument()
-            //{
-            //    Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSS),
-            //    Verb = Verb.Put,
-            //    Headers = new Dictionary<string, string>()
-            //    {
-            //        {"Authorization", "Bearer " + oauth.access_token }
-            //    }
-            //};
+            string outputFileNameOSS = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), Path.GetFileName(input.inputFile.FileName)); // avoid overriding
+            XrefTreeArgument outputFileArgument = new XrefTreeArgument()
+            {
+                Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSS),
+                Verb = Verb.Put,
+                Headers = new Dictionary<string, string>()
+                {
+                    {"Authorization", "Bearer " + oauth.access_token }
+                }
+            };
+
+            //DesignAutomation4Civil3D da4c3d = new DesignAutomation4Civil3D();
+
 
             // prepare & submit workitem
             // the callback contains the connectionId (used to identify the client) and the outputFileName of this workitem
-            string callbackUrl = string.Format("{0}/api/forge/callback/designautomation?id={1}&outputFileName={2}", forgeSample.Controllers.OAuthController.GetAppSetting("FORGE_WEBHOOK_URL"), browerConnectionId, outputFileNameOSSjson);
+            string callbackUrl = string.Format("{0}/api/forge/callback/designautomation?id={1}&outputFileName={2}", OAuthController.GetAppSetting("FORGE_WEBHOOK_URL"), browerConnectionId, outputFileNameOSSjson);
             WorkItem workItemSpec = new WorkItem()
             {
                 ActivityId = activityName,
                 Arguments = new Dictionary<string, IArgument>()
-            {
-                { "inputFile", inputFileArgument },
-                { "result", inputFileTwoArgument},
-                { "inputJson",  inputJsonArgument },
+        {
+            { "inputFile", inputFileArgument },
+            { "result", inputFileTwoArgument},
+            //{ "inputJson",  inputJsonArgument },
             //{ "outputFile", outputFileArgument },
             { "onComplete", new XrefTreeArgument { Verb = Verb.Post, Url = callbackUrl } }
-            }
+        }
             };
             WorkItemStatus workItemStatus = await _designAutomation.CreateWorkItemAsync(workItemSpec);
 
