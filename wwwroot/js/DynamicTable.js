@@ -261,6 +261,7 @@ function executeFitToViewHandleId(handleIdData) {
                 handleIdVal = item['properties'][0]['displayValue']
                 dbIdVal = item['dbId']
                 if (handleIdVal == handleIdData) {
+                  console.log("Eric - Matched Handle Id ", handleIdVal)
                     viewer.select(dbIdVal)
                     viewer.utilities.fitToView()
                 }
