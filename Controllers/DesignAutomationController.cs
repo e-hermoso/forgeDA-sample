@@ -219,7 +219,7 @@ namespace forgeDesignautomation.Controllers
                     Parameters = new Dictionary<string, Parameter>()
                     {
                         { "inputFile", new Parameter() { Description = "input file", LocalName = "$(inputFile)", Ondemand = false, Required = true, Verb = Verb.Get, Zip = false } },
-                        { "result", new Parameter() { Description = "Resulting File", LocalName = "parcel.json", Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } },
+                        { "result", new Parameter() { Description = "Resulting File", LocalName = "civilData.js", Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } },
                         { "inputJson", new Parameter() { Description = "input json", LocalName = "params.json", Ondemand = false, Required = false, Verb = Verb.Get, Zip = false } },
                         //{ "outputFile", new Parameter() { Description = "output file", LocalName = "outputFile." + engineAttributes.extension, Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } }
                     },
@@ -310,7 +310,7 @@ namespace forgeDesignautomation.Controllers
             };
 
             // 2. output file
-            string outputFileNameOSSjson = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), "parcel.json"); // avoid overriding
+            string outputFileNameOSSjson = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), "civilData.json"); // avoid overriding
             XrefTreeArgument inputFileTwoArgument = new XrefTreeArgument()
             {
                 Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSSjson),
