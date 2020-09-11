@@ -1,4 +1,34 @@
-﻿
+﻿body {
+}
+/*html, body {
+    min-height: 100%;
+    height: 100%;
+}*/
+
+/*.fill {
+    height: calc(100vh - 100px);
+}*/
+
+/*body {
+    padding-top: 60px;*/ /* space for the top nav bar */
+    /*margin-right: 30px;
+}*/
+
+#appBuckets {
+    overflow: auto;
+    width: 100%;
+    height: calc(100vh - 360px);
+}
+
+#forgeViewer {
+    width: 100%;
+}
+
+.adsk-viewing-viewer{
+    height: 45% !important;
+    width: 97% !important;
+}
+/* handle alert info*/
 .success {
     color: #3c763d;
     background-color: #dff0d8;
@@ -12,10 +42,14 @@
     padding: 6px;
     max-width: 400px;
 }
+
+#reset-map{
+  display:none;
+}
 /*Legal Description Content Style*/
 .sty-content {
     height: calc(50vh - 65px);
-/*    overflow-y: scroll;*/
+    /*    overflow-y: scroll;*/
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
@@ -27,3 +61,12 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+/*Extension*/
+.modelSummaryExtensionIcon {
+    background-image: url(https://github.com/encharm/Font-Awesome-SVG-PNG/raw/master/white/png/24/dashboard.png);
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
