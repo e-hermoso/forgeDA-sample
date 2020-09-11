@@ -201,7 +201,7 @@ namespace forgeDesignautomation.Controllers
             string appBundleName = zipFileName + "AppBundle";
             string activityName = zipFileName + "Activity";
 
-            
+
             Page<string> activities = await _designAutomation.GetActivitiesAsync();
             string qualifiedActivityId = string.Format("{0}.{1}+{2}", NickName, activityName, Alias);
             if (!activities.Data.Contains(qualifiedActivityId))
@@ -219,7 +219,7 @@ namespace forgeDesignautomation.Controllers
                     Parameters = new Dictionary<string, Parameter>()
                     {
                         { "inputFile", new Parameter() { Description = "input file", LocalName = "$(inputFile)", Ondemand = false, Required = true, Verb = Verb.Get, Zip = false } },
-                        { "result", new Parameter() { Description = "Resulting File", LocalName = "civilData.js", Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } },
+                        { "result", new Parameter() { Description = "Resulting File", LocalName = "parcel.js", Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } },
                         { "inputJson", new Parameter() { Description = "input json", LocalName = "params.json", Ondemand = false, Required = false, Verb = Verb.Get, Zip = false } },
                         //{ "outputFile", new Parameter() { Description = "output file", LocalName = "outputFile." + engineAttributes.extension, Ondemand = false, Required = true, Verb = Verb.Put, Zip = false } }
                     },
@@ -248,7 +248,7 @@ namespace forgeDesignautomation.Controllers
         [Route("api/forge/designautomation/activities")]
         public async Task<List<string>> GetDefinedActivities()
         {
-            // filter list of 
+            // filter list of
             Page<string> activities = await _designAutomation.GetActivitiesAsync();
             List<string> definedActivities = new List<string>();
             foreach (string activity in activities.Data)
@@ -310,7 +310,7 @@ namespace forgeDesignautomation.Controllers
             };
 
             // 2. output file
-            string outputFileNameOSSjson = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), "civilData.json"); // avoid overriding
+            string outputFileNameOSSjson = string.Format("{0}_output_{1}", DateTime.Now.ToString("yyyyMMddhhmmss"), "parcel.json"); // avoid overriding
             XrefTreeArgument inputFileTwoArgument = new XrefTreeArgument()
             {
                 Url = string.Format("https://developer.api.autodesk.com/oss/v2/buckets/{0}/objects/{1}", bucketKey, outputFileNameOSSjson),
