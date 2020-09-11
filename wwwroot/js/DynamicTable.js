@@ -244,6 +244,7 @@ function getAllLeafComponents_v3(callback) {
 function executeFitToViewHandleId(handleIdData) {
     // Execute test function getAllLeafComponents_v3
     console.log("Eric - Handle Id Passed: ", handleIdData)
+    console.log("Eric - Type of: ", typeof handleIdData)
     getAllLeafComponents_v3((dbIds) => {
         // Now for leaf components, let's get some properties and count occurrences of each value
         const filteredProps = ['Handle'];
@@ -258,8 +259,11 @@ function executeFitToViewHandleId(handleIdData) {
             items.forEach((item) => {
 
                 // Check a polyline based on dwg file
+
                 handleIdVal = item['properties'][0]['displayValue']
                 dbIdVal = item['dbId']
+                console.log("Viewer - Handle Id: ", handleIdVal)
+                console.log("Viewer - Type of", typeof handleIdVal)
                 if (handleIdVal == handleIdData) {
                   console.log("Eric - Matched Handle Id ", handleIdVal)
                     viewer.select(dbIdVal)
