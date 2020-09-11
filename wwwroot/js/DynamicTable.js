@@ -178,7 +178,7 @@ function builtTable(dataJson) {
         var autocad_layOutName = Object.keys(obj)[i]
         // obj equals dataJson["Map_checkResults"][i] : same results
         $.each(obj, function (j, obj_two) {
-            
+
             // console.log(j) // Autocad Layout Name
             // console.log(obj_two) // list of objects
             var tableBody = ""
@@ -217,13 +217,13 @@ function builtTable(dataJson) {
         })
     })
 }
-// Test static json tabel 
+// Test static json tabel
 //$(document).ready(function () {
 //    builtTable(dataJson);
 //});
 
 /*
- * Add Functionality to interact with the data in the table 
+ * Add Functionality to interact with the data in the table
  * and Forge Viewer after the table is created.
  */
 
@@ -243,6 +243,7 @@ function getAllLeafComponents_v3(callback) {
 
 function executeFitToViewHandleId(handleIdData) {
     // Execute test function getAllLeafComponents_v3
+    console.log("Eric - Handle Id Passed: ", handleIdData)
     getAllLeafComponents_v3((dbIds) => {
         // Now for leaf components, let's get some properties and count occurrences of each value
         const filteredProps = ['Handle'];
@@ -256,7 +257,7 @@ function executeFitToViewHandleId(handleIdData) {
             var dbIdVal
             items.forEach((item) => {
 
-                // Check a polyline based on dwg file 
+                // Check a polyline based on dwg file
                 handleIdVal = item['properties'][0]['displayValue']
                 dbIdVal = item['dbId']
                 if (handleIdVal == handleIdData) {

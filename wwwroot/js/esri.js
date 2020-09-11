@@ -663,6 +663,8 @@ var workingGDB;
           var oid = $(this).attr("id");
           var hid = $(this).attr("hid");
           // Call Function to zoom in to object on viewer.
+          console.log("Eric - Executing function: executeFitToViewHandleId")
+          console.log("handleId being passed: ", hid)
           executeFitToViewHandleId(hid);
           lastgeo ='';
 
