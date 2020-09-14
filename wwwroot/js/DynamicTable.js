@@ -1,148 +1,147 @@
-var dataJson = {
-    "BaseChecks": [
-        {
-            "LayerChecks": {
-                "Result": "Fail",
-                "MissingLayers": "BASIS OF BEARING GPS TIES,BOUNDARY,CENTERLINES,EASEMENTS,LOT LINES,NORTH ARROW MISCELLANEOUS,RIGHT OF WAY"
-            }
-        }
-    ],
-    "Parcels": {},
-    "Segmentkey": [],
-    "C3D_Labels": {
-        "Labels": [
-            {
-                "ParcelSegments": []
-            },
-            {
-                "Alignments": []
-            },
-            {
-                "FeatureLines": []
-            },
-            {
-                "Polylines": []
-            },
-            {
-                "Lines": []
-            },
-            {
-                "Arcs": []
-            }
-        ]
-    },
-    "Map_checkResults": [
-        {
-            "Model": [
-                {
-                    "top_of_all_sheets": {
-                        "tract_parcel_map_number": [],
-                        "date_of_survey": [
-                            {
-                                "HandleId": "b659",
-                                "match_word": "DATE OF SURVEY: 10/26/2017",
-                                "x": 31107.026194458209,
-                                "y": 11228.528266734
-                            }
-                        ],
-                        "surveyor_engineer_name_license": [
-                            {
-                                "HandleId": "bb10",
-                                "match_word": "ALFRED J. THELWELL, LS 6999",
-                                "x": 31222.373683522714,
-                                "y": 11155.653262648202
-                            },
-                            {
-                                "HandleId": "bbac",
-                                "match_word": "C TAGGED LS 6999",
-                                "x": 31259.729920857244,
-                                "y": 10989.042982694229
-                            },
-                            {
-                                "HandleId": "bbc5",
-                                "match_word": "BRASS WASHER \r\nSTAMPED L.S. 5183",
-                                "x": 31659.441567592636,
-                                "y": 11039.439309968637
-                            },
-                            {
-                                "HandleId": "bf0c",
-                                "match_word": "W STAMPED LS 6999",
-                                "x": 31482.6895838937,
-                                "y": 11008.525792042698
-                            }
-                        ],
-                        "total_area": [],
-                        "number_of_lots_parcels": [
-                            {
-                                "HandleId": "b657",
-                                "match_word": "LOTS: 5",
-                                "x": 31107.253390780643,
-                                "y": 11243.771894421843
-                            },
-                            {
-                                "HandleId": "b6af",
-                                "match_word": "LOTS 1",
-                                "x": 31370.983842344671,
-                                "y": 11089.395011209348
-                            },
-                            {
-                                "HandleId": "c0a2",
-                                "match_word": "LOTS 1",
-                                "x": 31278.957435702083,
-                                "y": 10819.57450535413
-                            },
-                            {
-                                "HandleId": "c0a5",
-                                "match_word": "LOTS 1",
-                                "x": 31497.286658946086,
-                                "y": 10514.047390896581
-                            },
-                            {
-                                "HandleId": "c0cf",
-                                "match_word": "LOTS 1",
-                                "x": 31399.167661779269,
-                                "y": 10796.644325429826
-                            },
-                            {
-                                "HandleId": "c0d0",
-                                "match_word": "LOTS 8",
-                                "x": 31350.314548824026,
-                                "y": 10502.702023775155
-                            },
-                            {
-                                "HandleId": "d5b1",
-                                "match_word": "LOTS 21",
-                                "x": 31628.726183393752,
-                                "y": 10661.145064029652
-                            }
-                        ],
-                        "sheet_numbers": [],
-                        "tentative_pm/tr": []
-                    }
-                },
-                {
-                    "title_sheets": {
-                        "legal_description_near_top_center": [
-                            {
-                                "HandleId": "bb13",
-                                "match_word": " IN THE CITY OF COSTA MESA, COUNTY OF ORANGE, STATE OF CALIFORNIA",
-                                "x": 31418.9958378073,
-                                "y": 11215.078518842372
-                            }
-                        ],
-                        "owners_subdividers_certificate": [],
-                        "surveyors_engineers_statement": [],
-                        "county_surveyors_statement": [],
-                        "signiture_omissions": [],
-                        "scilicet_certificates": [],
-                        "first_check_tract": []
-                    }
-                }
-            ]
-        }
-    ]
-}
-
+// var dataJson = {
+//     "BaseChecks": [
+//         {
+//             "LayerChecks": {
+//                 "Result": "Fail",
+//                 "MissingLayers": "BASIS OF BEARING GPS TIES,BOUNDARY,CENTERLINES,EASEMENTS,LOT LINES,NORTH ARROW MISCELLANEOUS,RIGHT OF WAY"
+//             }
+//         }
+//     ],
+//     "Parcels": {},
+//     "Segmentkey": [],
+//     "C3D_Labels": {
+//         "Labels": [
+//             {
+//                 "ParcelSegments": []
+//             },
+//             {
+//                 "Alignments": []
+//             },
+//             {
+//                 "FeatureLines": []
+//             },
+//             {
+//                 "Polylines": []
+//             },
+//             {
+//                 "Lines": []
+//             },
+//             {
+//                 "Arcs": []
+//             }
+//         ]
+//     },
+//     "Map_checkResults": [
+//         {
+//             "Model": [
+//                 {
+//                     "top_of_all_sheets": {
+//                         "tract_parcel_map_number": [],
+//                         "date_of_survey": [
+//                             {
+//                                 "HandleId": "b659",
+//                                 "match_word": "DATE OF SURVEY: 10/26/2017",
+//                                 "x": 31107.026194458209,
+//                                 "y": 11228.528266734
+//                             }
+//                         ],
+//                         "surveyor_engineer_name_license": [
+//                             {
+//                                 "HandleId": "bb10",
+//                                 "match_word": "ALFRED J. THELWELL, LS 6999",
+//                                 "x": 31222.373683522714,
+//                                 "y": 11155.653262648202
+//                             },
+//                             {
+//                                 "HandleId": "bbac",
+//                                 "match_word": "C TAGGED LS 6999",
+//                                 "x": 31259.729920857244,
+//                                 "y": 10989.042982694229
+//                             },
+//                             {
+//                                 "HandleId": "bbc5",
+//                                 "match_word": "BRASS WASHER \r\nSTAMPED L.S. 5183",
+//                                 "x": 31659.441567592636,
+//                                 "y": 11039.439309968637
+//                             },
+//                             {
+//                                 "HandleId": "bf0c",
+//                                 "match_word": "W STAMPED LS 6999",
+//                                 "x": 31482.6895838937,
+//                                 "y": 11008.525792042698
+//                             }
+//                         ],
+//                         "total_area": [],
+//                         "number_of_lots_parcels": [
+//                             {
+//                                 "HandleId": "b657",
+//                                 "match_word": "LOTS: 5",
+//                                 "x": 31107.253390780643,
+//                                 "y": 11243.771894421843
+//                             },
+//                             {
+//                                 "HandleId": "b6af",
+//                                 "match_word": "LOTS 1",
+//                                 "x": 31370.983842344671,
+//                                 "y": 11089.395011209348
+//                             },
+//                             {
+//                                 "HandleId": "c0a2",
+//                                 "match_word": "LOTS 1",
+//                                 "x": 31278.957435702083,
+//                                 "y": 10819.57450535413
+//                             },
+//                             {
+//                                 "HandleId": "c0a5",
+//                                 "match_word": "LOTS 1",
+//                                 "x": 31497.286658946086,
+//                                 "y": 10514.047390896581
+//                             },
+//                             {
+//                                 "HandleId": "c0cf",
+//                                 "match_word": "LOTS 1",
+//                                 "x": 31399.167661779269,
+//                                 "y": 10796.644325429826
+//                             },
+//                             {
+//                                 "HandleId": "c0d0",
+//                                 "match_word": "LOTS 8",
+//                                 "x": 31350.314548824026,
+//                                 "y": 10502.702023775155
+//                             },
+//                             {
+//                                 "HandleId": "d5b1",
+//                                 "match_word": "LOTS 21",
+//                                 "x": 31628.726183393752,
+//                                 "y": 10661.145064029652
+//                             }
+//                         ],
+//                         "sheet_numbers": [],
+//                         "tentative_pm/tr": []
+//                     }
+//                 },
+//                 {
+//                     "title_sheets": {
+//                         "legal_description_near_top_center": [
+//                             {
+//                                 "HandleId": "bb13",
+//                                 "match_word": " IN THE CITY OF COSTA MESA, COUNTY OF ORANGE, STATE OF CALIFORNIA",
+//                                 "x": 31418.9958378073,
+//                                 "y": 11215.078518842372
+//                             }
+//                         ],
+//                         "owners_subdividers_certificate": [],
+//                         "surveyors_engineers_statement": [],
+//                         "county_surveyors_statement": [],
+//                         "signiture_omissions": [],
+//                         "scilicet_certificates": [],
+//                         "first_check_tract": []
+//                     }
+//                 }
+//             ]
+//         }
+//     ]
+// }
 
 /* Formatting function for row details - modify as you need */
 function format(subCheckObj, number) {
@@ -244,7 +243,7 @@ function getAllLeafComponents_v3(callback) {
 function executeFitToViewHandleId(handleIdData) {
     // Execute test function getAllLeafComponents_v3
     console.log("Eric - Handle Id Passed: ", handleIdData)
-    console.log("Eric - Type of: ", typeof handleIdData)
+    //console.log("Eric - Type of: ", typeof handleIdData)
     getAllLeafComponents_v3((dbIds) => {
         // Now for leaf components, let's get some properties and count occurrences of each value
         const filteredProps = ['externalId'];
@@ -268,7 +267,7 @@ function executeFitToViewHandleId(handleIdData) {
                 // console.log("Viewer - Handle Id: ", handleIdVal)
                 // console.log("Viewer - Type of", typeof handleIdVal)
                 if (handleIdFromViewer == handleIdData) {
-                  console.log("Eric - Matched Handle Id ", handleIdFromViewer)
+                    console.log("Eric - Matched Handle Id ", handleIdFromViewer)
                     viewer.select(dbIdVal)
                     viewer.utilities.fitToView()
                 }
