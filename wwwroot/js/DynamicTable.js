@@ -247,25 +247,28 @@ function executeFitToViewHandleId(handleIdData) {
     console.log("Eric - Type of: ", typeof handleIdData)
     getAllLeafComponents_v3((dbIds) => {
         // Now for leaf components, let's get some properties and count occurrences of each value
-        const filteredProps = ['Handle'];
+        const filteredProps = ['externalId'];
 
         // important! How does the search function work.
 
         // Get only the properties we need for the leaf dbIds
         viewer.model.getBulkProperties(dbIds, filteredProps, (items) => {
             // Iterate through the elements we found
-            var handleIdVal
+            var handleIdFromViewer
             var dbIdVal
             items.forEach((item) => {
 
                 // Check a polyline based on dwg file
 
-                handleIdVal = item['properties'][0]['displayValue']
+                // Unable to access properties from externalId
+                //handleIdVal = item['properties'][0]['displayValue']
+
+                handleIdFromViewer = item['externalId'].toLowerCase();
                 dbIdVal = item['dbId']
-                console.log("Viewer - Handle Id: ", handleIdVal)
-                console.log("Viewer - Type of", typeof handleIdVal)
-                if (handleIdVal == handleIdData) {
-                  console.log("Eric - Matched Handle Id ", handleIdVal)
+                // console.log("Viewer - Handle Id: ", handleIdVal)
+                // console.log("Viewer - Type of", typeof handleIdVal)
+                if (handleIdFromViewer == handleIdData) {
+                  console.log("Eric - Matched Handle Id ", handleIdFromViewer)
                     viewer.select(dbIdVal)
                     viewer.utilities.fitToView()
                 }
