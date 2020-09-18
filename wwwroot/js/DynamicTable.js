@@ -158,7 +158,7 @@ function format(subCheckObj, number) {
             //console.log('Key', n)
             //console.log('Value', obj_six)
             //console.log(obj_six['HandleId'])
-            subTableFormat = subTableFormat + "<td class='matched-found' dataInfo=" + obj_six['HandleId'] + ">" + obj_six['match_word'] + "</td>"
+            subTableFormat = subTableFormat + "<td class='cad-data' dataInfo=" + obj_six['HandleId'] + ">" + obj_six['match_word'] + "</td>"
         })
         subTableFormat = subTableFormat + "</tr>"
     })
@@ -277,7 +277,7 @@ function executeFitToViewHandleId(handleIdData) {
     });
 }
 
-$(document).on('click', '.matched-found', function () {
+$(document).on('click', '.cad-data', function () {
 
     //alert($(this).attr('datainfo'));
     var handleIdFromElementAttribute = $(this).attr('datainfo')
