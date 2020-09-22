@@ -119,7 +119,7 @@ function Show2dCurve(viewer) {
     // It is a known issue with OpenGL core
     // try with Safari
     var _curveMaterial = new THREE.LineBasicMaterial({
-        color: new THREE.Color(#add8e6),
+        color: new THREE.Color(0xFF000),
         transparent: true,
         depthWrite: false,
         depthTest: false,
