@@ -241,9 +241,8 @@ function getAllLeafComponents_v3(callback) {
 }
 
 function executeFitToViewHandleId(handleIdData) {
+    var itemObj
     // Execute test function getAllLeafComponents_v3
-    console.log("Eric - Handle Id Passed: ", handleIdData)
-    //console.log("Eric - Type of: ", typeof handleIdData)
     getAllLeafComponents_v3((dbIds) => {
         // Now for leaf components, let's get some properties and count occurrences of each value
         const filteredProps = ['externalId'];
@@ -255,23 +254,29 @@ function executeFitToViewHandleId(handleIdData) {
             // Iterate through the elements we found
             var handleIdFromViewer
             var dbIdVal
-            items.forEach((item) => {
 
-                // Check a polyline based on dwg file
+            itemObj = items.find(item => item['externalId'].toLowerCase() == handleIdData)
+            dbIdVal = itemObj['dbId']
+            viewer.select(dbIdVal)
+            viewer.utilities.fitToView()
 
-                // Unable to access properties from externalId
-                //handleIdVal = item['properties'][0]['displayValue']
-
-                handleIdFromViewer = item['externalId'].toLowerCase();
-                dbIdVal = item['dbId']
-                // console.log("Viewer - Handle Id: ", handleIdVal)
-                // console.log("Viewer - Type of", typeof handleIdVal)
-                if (handleIdFromViewer == handleIdData) {
-                    console.log("Eric - Matched Handle Id ", handleIdFromViewer)
-                    viewer.select(dbIdVal)
-                    viewer.utilities.fitToView()
-                }
-            });
+            // items.forEach((item) => {
+            //
+            //     // Check a polyline based on dwg file
+            //
+            //     // Unable to access properties from externalId
+            //     //handleIdVal = item['properties'][0]['displayValue']
+            //
+            //     handleIdFromViewer = item['externalId'].toLowerCase();
+            //     dbIdVal = item['dbId']
+            //     // console.log("Viewer - Handle Id: ", handleIdVal)
+            //     // console.log("Viewer - Type of", typeof handleIdVal)
+            //     if (handleIdFromViewer == handleIdData) {
+            //         console.log("Eric - Matched Handle Id ", handleIdFromViewer)
+            //         viewer.select(dbIdVal)
+            //         viewer.utilities.fitToView()
+            //     }
+            // });
             //console.log(viewer.select([testDbid]))
         });
     });
