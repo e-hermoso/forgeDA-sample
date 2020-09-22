@@ -3,7 +3,7 @@
     this.viewer = viewer;
     this.opiedGeometryName = copiedGeometryName;
 
-    // linewidth does not take effect in Chrome and Firefox 
+    // linewidth does not take effect in Chrome and Firefox
     // It is a known issue with OpenGL core
     // try with Safari
     this.curveMaterial = curveMaterial;
@@ -18,7 +18,7 @@ GeometryCallback.prototype.onLineSegment = function (x1, y1, x2, y2, vpId) {
     var vpXform = this.viewer.model.getPageToModelTransform(vpId);
     //if in CAD coordinate system, applyMatrix4 with vpXform
     var pt1 = new THREE.Vector3().set(x1, y1, 0)//.applyMatrix4(vpXform);
-    var pt2 = new THREE.Vector3().set(x2, y2, 0)//.applyMatrix4(vpXform); 
+    var pt2 = new THREE.Vector3().set(x2, y2, 0)//.applyMatrix4(vpXform);
 
     console.log('Line segment vertices coordinates: ', {
         pointX1: pt1.x,
@@ -27,7 +27,7 @@ GeometryCallback.prototype.onLineSegment = function (x1, y1, x2, y2, vpId) {
         pointY2: pt2.y
     });
 
-    //add overlay geometry 
+    //add overlay geometry
     var geometry = new THREE.Geometry()
     geometry.vertices.push(new THREE.Vector3(pt1.x, pt1.y, 0))
     geometry.vertices.push(new THREE.Vector3(pt2.x, pt2.y, 0))
@@ -115,11 +115,11 @@ function Show2dCurve(viewer) {
     var _viewer = this.viewer
     var _copiedGeometryName = 'copiedGeometryName'
 
-    // linewidth does not take effect in Chrome and Firefox 
+    // linewidth does not take effect in Chrome and Firefox
     // It is a known issue with OpenGL core
     // try with Safari
     var _curveMaterial = new THREE.LineBasicMaterial({
-        color: new THREE.Color(0xFF0000),
+        color: new THREE.Color(#add8e6),
         transparent: true,
         depthWrite: false,
         depthTest: false,
@@ -146,7 +146,7 @@ function Show2dCurve(viewer) {
         return true;
     };
 
-    //when extension is unloaded 
+    //when extension is unloaded
     this.unload = function () {
         console.log('MyShow2dCurve is now unloaded!');
         //unbind keyup event
@@ -162,7 +162,7 @@ function Show2dCurve(viewer) {
         if (evt.keyCode == 83) {
             //create overlay
             _viewer.impl.createOverlayScene(_copiedGeometryName, _curveMaterial)
-            //start to monitor select event 
+            //start to monitor select event
             _viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, createOverlayforHandleIdObj)
         }
 
@@ -218,7 +218,7 @@ function Show2dCurve(viewer) {
     }
 
     // search for the selected object based on the HandleId
-    // "this" gives access to the searchSelectObj method in the browser 
+    // "this" gives access to the searchSelectObj method in the browser
     this.searchSelectedObj = function(handleIdData) {
         var itemObj
         console.log("Execute function getAllLeafComponents_v4")
