@@ -7,7 +7,7 @@ function launchViewer(urn) {
     };
 
     Autodesk.Viewing.Initializer(options, () => {
-        viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'), { extensions: ['ModelSummaryExtensionClass', 'SampleExtension','Autodesk.DocumentBrowser']});
+        viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'), { extensions: ['ModelSummaryExtensionClass', 'SampleExtension','Autodesk.DocumentBrowser','OverLayGeometry']});
         viewer.start();
 
         // The documentId is a string value of the URN of the model that was translated.
@@ -35,7 +35,7 @@ function onDocumentLoadSuccess(viewerDocument) {
         // documented loaded, any action?
         console.log("Eric - Document loaded succesfully")
 
-        // Execute test function getAllLeafComponents_v2 
+        // Execute test function getAllLeafComponents_v2
         //getAllLeafComponents_v2(NOP_VIEWER, function (dbIds) {
         //    console.log('Found ' + dbIds.length + ' leaf nodes');
         //})

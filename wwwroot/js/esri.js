@@ -662,10 +662,15 @@ var workingGDB;
           // hover starts code here
           var oid = $(this).attr("id");
           var hid = $(this).attr("hid");
+
+          // Get the instance of the extension.
+          var overLayGeometryExtension = viewer.getExtension('OverLayGeometry')
+
           // Call Function to zoom in to object on viewer.
           console.log("Eric - Executing function: executeFitToViewHandleId")
           console.log("handleId being passed: ", hid)
           executeFitToViewHandleId(hid);
+          overLayGeometryExtension.searchSelectedObj(hid)
           lastgeo ='';
 
           $( "label" ).css("background-color", "white");
@@ -760,9 +765,12 @@ var workingGDB;
           })[0].graphic;
             var attribute = graphic.attributes;
             var hid = attribute.hid;
+            var overLayGeometryExtension = viewer.getExtension('OverLayGeometry')
             if (hid) {
                 // Call Function to zoom in to object on viewer.
                 executeFitToViewHandleId(hid);
+
+                overLayGeometryExtension.searchSelectedObj(hid)
             }
 
           var geo = graphic.geometry;
