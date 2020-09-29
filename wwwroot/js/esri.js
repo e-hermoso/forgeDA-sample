@@ -352,9 +352,6 @@ var workingGDB;
 
 
 
-              //console.log(value[key2][0])
-              //cons([key2][0].Segments[1])
-              //
 
               for (var key in dictionary) {
                 // check if the property/key is defined in the object itself, not in parent
