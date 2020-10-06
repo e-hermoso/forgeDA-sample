@@ -421,7 +421,9 @@ var workingGDB;
 
                     // Eric - Concat ground descripton of the segment
                     parcelsDescription.concat("<div>" + words + "</div>");
-
+                    console.log("==== CONCATENATING: Legal Description ====")
+                    console.log(parcelsDescription)
+                    console.log("==========================================")
                     signx = Math.sign(centerx - midx);
                     signy = Math.sign(centery - midy)
                     offx = 0;
@@ -657,8 +659,10 @@ var workingGDB;
 
       });
       // Eric - trigger function to generate word doc
-      $(document).on("click", "#downloadWordDoc", function () {
-          Export2Doc(parcelsDescription);
+            $(document).on("click", "#downloadWordDoc", function () {
+                console.log("downloadWordDoc triggered")
+                console.log(parcelsDescription)
+                Export2Doc(parcelsDescription);
       })
 
       var lastgeo;
