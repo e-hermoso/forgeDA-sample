@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\forgeViewer.csproj": {}
+    "C:\\Users\\OCPWHermosoE\\github-repo\\NET-CORE-PRJ\\DEVELOPMENT\\forgeDA-sample\\forgeViewer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\forgeViewer.csproj": {
+    "C:\\Users\\OCPWHermosoE\\github-repo\\NET-CORE-PRJ\\DEVELOPMENT\\forgeDA-sample\\forgeViewer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\forgeViewer.csproj",
+        "projectUniqueName": "C:\\Users\\OCPWHermosoE\\github-repo\\NET-CORE-PRJ\\DEVELOPMENT\\forgeDA-sample\\forgeViewer.csproj",
         "projectName": "forgeViewer",
-        "projectPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\forgeViewer.csproj",
+        "projectPath": "C:\\Users\\OCPWHermosoE\\github-repo\\NET-CORE-PRJ\\DEVELOPMENT\\forgeDA-sample\\forgeViewer.csproj",
         "packagesPath": "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\obj\\",
+        "outputPath": "C:\\Users\\OCPWHermosoE\\github-repo\\NET-CORE-PRJ\\DEVELOPMENT\\forgeDA-sample\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\OCPWHermosoE\\AppData\\Roaming\\NuGet\\NuGet.Config",

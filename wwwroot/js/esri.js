@@ -125,7 +125,8 @@ var workingGDB;
       var dict2 = {};
       var hiddict = {};
       var parent = $('#content-sidebar');
-
+      // Eric - Concat legeal description
+      var parcelsDescription = "";
 
         var graphicslayer = new GraphicsLayer({
           id: 'graphicslayer'
@@ -313,7 +314,7 @@ var workingGDB;
               pnum += 1
               mkey = 'Parcel'+pnum
               var addsubtitle = '<h4 data-toggle="collapse" data-target="#tabapn'+pnum+'" class = "headtab" id = "#tabp'+pnum+'"><span id = "apnresults'+pnum+'" class = "ptab" tid = "#tabp'+pnum+'" ppid = "#tabapn'+pnum+'"> Parcel'+pnum+'</span></h4>'
-
+              parcelsDescription.concat("<strong>Parcel" + pnum + "</strong>")
               parcelparent.append(addsubtitle);
               var addparcel = '<div id = "tabapn'+pnum+'" class="atab collapse" ></div>'
               parcelparent.append(addparcel);
@@ -417,6 +418,9 @@ var workingGDB;
                     //   console.log('y is negative')
                     //   endy = endy - 3;
                     // }
+
+                    // Eric - Concat ground descripton of the segment
+                    parcelsDescription.concat("<div>" + words + "</div>");
 
                     signx = Math.sign(centerx - midx);
                     signy = Math.sign(centery - midy)
@@ -540,7 +544,7 @@ var workingGDB;
 
 
 
-                        var mylabel = "<label id=" + oid + "  hid = '" + hid +"'  class = 'lblclass' pid = '#apnresults"+pnum+"' style = 'margin-right:3px'>"+words+" </label>";
+                      var mylabel = "<label id=" + oid + "  hid = '" + hid +"'  class = 'lblclass' pid = '#apnresults"+pnum+"' style = 'margin-right:3px'>"+words+" </label>";
                       var newElement = $(mylabel);
                       parcelchild.append(newElement);
 
@@ -652,7 +656,10 @@ var workingGDB;
 
 
       });
-
+      // Eric - trigger function to generate word doc
+      $(document).on("click", "#downloadWordDoc", function () {
+          Export2Doc(parcelsDescription);
+      })
 
       var lastgeo;
       $(document).on("click", ".lblclass", function() {
@@ -663,7 +670,7 @@ var workingGDB;
           // Get the instance of the extension.
           var overLayGeometryExtension = viewer.getExtension('OverLayGeometry')
 
-          // Call Function to zoom in to object on viewer.
+          // Eric - Call Function to zoom in to object on viewer.
           console.log("Eric - Executing function: executeFitToViewHandleId")
           console.log("handleId being passed: ", hid)
           executeFitToViewHandleId(hid);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tl12QHu1SNvqEBFoWOXXPZ4UF9Lby7vA9e6y7+unX/EXWy+dSWuZh2ftWuFDK0qzThO72MU5ZRhM6TYa08FCyQ==",
+  "dgSpecHash": "GWlP2m3KpX0PlGOLQ/ragIfmb8YztOelKpFS1SZ7R9ie4si0VnqcVj3occ9vWW//GAwciWBW8YzagIhpaTc//Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\OCPWHermosoE\\source\\repos\\forgeViewer_esri_v2\\forgeViewer.csproj",
+  "projectFilePath": "C:\\Users\\OCPWHermosoE\\github-repo\\NET-CORE-PRJ\\DEVELOPMENT\\forgeDA-sample\\forgeViewer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\autodesk.forge\\1.7.0\\autodesk.forge.1.7.0.nupkg.sha512",
     "C:\\Users\\OCPWHermosoE\\.nuget\\packages\\autodesk.forge.core\\1.0.1\\autodesk.forge.core.1.0.1.nupkg.sha512",
