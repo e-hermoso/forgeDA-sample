@@ -664,7 +664,7 @@ var workingGDB;
       // Eric - trigger function to generate word doc
             $(document).on("click", "#downloadWordDoc", function () {
                 console.log("downloadWordDoc triggered", pDescriptionList)
-                parcelsDescription = pDescriptionList.toString();
+                parcelsDescription = pDescriptionList.join("");
                 console.log(parcelsDescription, pDescriptionList.toString())
                 Export2Doc(parcelsDescription);
       })
