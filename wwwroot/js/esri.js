@@ -663,10 +663,10 @@ var workingGDB;
       });
       // Eric - trigger function to generate word doc
             $(document).on("click", "#downloadWordDoc", function () {
-                console.log("downloadWordDoc triggered")
+                console.log("downloadWordDoc triggered", pDescriptionList.length)
                 parcelDescription = pDescriptionList.toString();
                 console.log(parcelsDescription)
-                Export2Doc(parcelsDescription);
+                //Export2Doc(parcelsDescription);
       })
 
       var lastgeo;
