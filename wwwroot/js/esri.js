@@ -663,7 +663,7 @@ var workingGDB;
       });
       // Eric - trigger function to generate word doc
             $(document).on("click", "#downloadWordDoc", function () {
-                console.log("downloadWordDoc triggered", pDescriptionList.length)
+                console.log("downloadWordDoc triggered", pDescriptionList)
                 parcelDescription = pDescriptionList.toString();
                 console.log(parcelsDescription)
                 //Export2Doc(parcelsDescription);
