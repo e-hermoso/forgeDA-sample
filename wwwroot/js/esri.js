@@ -127,6 +127,7 @@ var workingGDB;
       var parent = $('#content-sidebar');
       // Eric - Concat legeal description
       var parcelsDescription = "";
+      var pDescriptionList = [];
 
         var graphicslayer = new GraphicsLayer({
           id: 'graphicslayer'
@@ -315,7 +316,7 @@ var workingGDB;
               mkey = 'Parcel'+pnum
               var addsubtitle = '<h4 data-toggle="collapse" data-target="#tabapn'+pnum+'" class = "headtab" id = "#tabp'+pnum+'"><span id = "apnresults'+pnum+'" class = "ptab" tid = "#tabp'+pnum+'" ppid = "#tabapn'+pnum+'"> Parcel'+pnum+'</span></h4>'
               var parcelTitle_wordDoc = "<strong>Parcel" + pnum + "</strong>"
-              parcelsDescription.concat(parcelTitle_wordDoc)
+              pDescriptionList.push(parcelTitle_wordDoc)
               parcelparent.append(addsubtitle);
               var addparcel = '<div id = "tabapn'+pnum+'" class="atab collapse" ></div>'
               parcelparent.append(addparcel);
@@ -422,7 +423,7 @@ var workingGDB;
 
                     // Eric - Concat ground descripton of the segment
                     var segmentDescription_wordDoc = "<div>" + words + "</div>"
-                    parcelsDescription.concat(segmentDescription_wordDoc);
+                    pDescriptionList.push(segmentDescription_wordDoc)
                     console.log("==== CONCATENATING: Legal Description ====")
                     console.log(parcelsDescription)
                     console.log("==========================================")
@@ -663,6 +664,7 @@ var workingGDB;
       // Eric - trigger function to generate word doc
             $(document).on("click", "#downloadWordDoc", function () {
                 console.log("downloadWordDoc triggered")
+                parcelDescription = pDescriptionList.toString();
                 console.log(parcelsDescription)
                 Export2Doc(parcelsDescription);
       })
