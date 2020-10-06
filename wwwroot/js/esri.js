@@ -314,7 +314,7 @@ var workingGDB;
               pnum += 1
               mkey = 'Parcel'+pnum
               var addsubtitle = '<h4 data-toggle="collapse" data-target="#tabapn'+pnum+'" class = "headtab" id = "#tabp'+pnum+'"><span id = "apnresults'+pnum+'" class = "ptab" tid = "#tabp'+pnum+'" ppid = "#tabapn'+pnum+'"> Parcel'+pnum+'</span></h4>'
-              parcelsDescription.concat("<strong>Parcel" + pnum + "</strong>")
+              parcelsDescription + "<strong>Parcel" + pnum + "</strong>"
               parcelparent.append(addsubtitle);
               var addparcel = '<div id = "tabapn'+pnum+'" class="atab collapse" ></div>'
               parcelparent.append(addparcel);
@@ -420,7 +420,7 @@ var workingGDB;
                     // }
 
                     // Eric - Concat ground descripton of the segment
-                    parcelsDescription.concat("<div>" + words + "</div>");
+                    parcelsDescription + "<div>" + words + "</div>";
                     console.log("==== CONCATENATING: Legal Description ====")
                     console.log(parcelsDescription)
                     console.log("==========================================")
