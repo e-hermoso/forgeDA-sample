@@ -665,7 +665,7 @@ var workingGDB;
             $(document).on("click", "#downloadWordDoc", function () {
                 console.log("downloadWordDoc triggered", pDescriptionList)
                 parcelDescription = pDescriptionList.toString();
-                console.log(parcelsDescription)
+                console.log(parcelsDescription, pDescriptionList.toString())
                 //Export2Doc(parcelsDescription);
       })
 
